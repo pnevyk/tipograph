@@ -1,0 +1,70 @@
+(function () {
+    var defineQuotesFormat = function (format) {
+        return {
+            quotesFormat : format
+        };
+    };
+
+    var languages = {
+        //this is for traditional chinese
+        //simplified chinese use the same format as english language
+        chinese : defineQuotesFormat(
+            'double-top-corner double-bottom-corner single-top-corner single-bottom-corner'
+        ),
+        czech : defineQuotesFormat(
+            'double-open-down double-open-up single-open-down single-open-up'
+        ),
+        danish : defineQuotesFormat(
+            'double-right double-left double-open-down double-open-up'
+        ),
+        english : defineQuotesFormat(
+            'double-open-up double-close-up single-open-up single-close-up'
+        ),
+        finnish : defineQuotesFormat(
+            'double-close-up double-close-up single-close-up single-close-up'
+        ),
+        french : defineQuotesFormat(
+            'double-left-space double-space-right double-open-up double-close-up'
+        ),
+        german : defineQuotesFormat(
+            'double-open-down double-open-up single-open-down single-open-up'
+        ),
+        italian : defineQuotesFormat(
+            'double-left double-right double-open-up double-close-up'
+        ),
+        japanese : defineQuotesFormat(
+            'double-top-corner double-bottom-corner single-top-corner single-bottom-corner'
+        ),
+        norwegian : defineQuotesFormat(
+            'double-left double-right single-close-up single-close-up'
+        ),
+        polish : defineQuotesFormat(
+            'double-open-down double-close-up double-left double-right'
+        ),
+        portuguese : defineQuotesFormat(
+            'double-open-up double-close-up single-open-up single-close-up'
+        ),
+        russian : defineQuotesFormat(
+            'double-left double-right double-open-down double-open-up'
+        ),
+        spanish : defineQuotesFormat(
+            'double-left double-right double-open-up double-close-up'
+        ),
+        swedish : defineQuotesFormat(
+            'double-close-up double-close-up single-close-up single-close-up'
+        ),
+        swiss : defineQuotesFormat(
+            'double-left double-right single-left single-right'
+        )
+    };
+
+    if (typeof window !== 'undefined') {
+        var Tipograph = window.Tipograph || {};
+        Tipograph.Languages = languages;
+        window.Tipograph = Tipograph;
+    }
+
+    else {
+        module.exports = languages;
+    }
+})();

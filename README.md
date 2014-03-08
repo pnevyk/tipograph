@@ -6,6 +6,8 @@ And hence there is Tipograph! It's library which transforms your text input into
 
 When creating this I followed this amazing web - [Practical Typography](http://practicaltypography.com/). I have read through it and make Tipograph. It's impossible to follow all these rules because some of them cannot be managed by code without a complex understanding of context. I hope this is quite enough. And some improvements would come.
 
+I also want to make better and more useful documentation. And I am going to do module which will provide live replacement and will be useful for word processors. Wish me luck :D.
+
 ## Usage
 
 Usage of Tipograph is really simple. Just pass the input and get the transformed result.
@@ -35,7 +37,7 @@ Tipograph replaces more than one space with single one. And it also put non brea
 
 ### Hyphens and dashes
 
-People usually type hyphen where should be dash. Tipograph tries to put it right. `--` is replaces with en dash and `---` is replaced with em dash. And it also knows the correct character for minus.
+People usually type hyphen where should be dash. Tipograph tries to put it right. `--` is replaced with en dash and `---` is replaced with em dash. And it also knows the correct character for minus.
 
 ### Symbols
 

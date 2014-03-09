@@ -1,0 +1,36 @@
+{
+    "name" : "tipograph",
+    "author" : {
+        "name" : "Petr Nevyhoštěný",
+        "email" : "petr.nevyhosteny@gmail.com"
+    },
+    "description" : "Library which transforms your text input into typographically correct sequence of characters.",
+    "version" : "0.1.0",
+    "homepage" : "https://github.com/nevyk/tipograph",
+    "contributors" : [
+        {
+            "name" : "Petr Nevyhoštěný",
+            "email" : "petr.nevyhosteny@gmail.com"
+        }
+    ],
+    "keywords" : [
+        "tipograph",
+        "typography",
+        "type",
+        "converter",
+        "curly",
+        "quotes",
+        "dash"
+    ],
+    "repository" : {
+        "type" : "git",
+        "url" : "https://github.com/nevyk/tipograph"
+    },
+    "license" : "MIT",
+    "bugs" : "https://github.com/nevyk/tipograph/issues",
+    "main" : "./index",
+    "dependencies": {},
+    "engines": {
+        "node": "*"
+    }
+}

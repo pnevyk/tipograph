@@ -93,7 +93,7 @@
                     .replace(doublePattern, quotes[0])
                     .replace(singlePattern, quotes[1])
                     //replace the rest of straight single quotes by apostrophes
-                    .replace(/'/g, 'u2019');
+                    .replace(/'/g, '\u2019');
     };
 
     Replace.prototype.spaces = function (input) {

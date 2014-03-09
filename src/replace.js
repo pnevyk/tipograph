@@ -1,3 +1,11 @@
+/**
+ * @module  Languages
+ * @author Petr Nevyhoštěný
+ * @version 0.1.0
+ * @license https://github.com/nevyk/tipograph/blob/master/LICENSE MIT License
+ * @description This module provides just predefined quotes format for some languages
+ */
+
 (function () {
     var config = {
         //see parseQuotesFormat for possible values

@@ -5,7 +5,7 @@
     "email": "petr.nevyhosteny@gmail.com"
   },
   "description": "Library which transforms your text input into typographically correct sequence of characters.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/nevyk/tipograph",
   "contributors": [
     {

@@ -6,7 +6,11 @@ And hence there is Tipograph! It's library which transforms your text input into
 
 When creating this I followed this amazing web - [Practical Typography](http://practicaltypography.com/). I have read through it and make Tipograph. It's impossible to follow all these rules because some of them cannot be managed by code without a complex understanding of context. I hope this is quite enough. And some improvements would come.
 
-I also want to make better and more useful documentation. And I am going to do module which will provide live replacement and will be useful for word processors. Wish me luck :D.
+I also want to make better and more useful documentation. And I am going to do module which will provide live replacement and will be useful for word processors.
+
+# Note
+
+I would very appreciate if you could check the source code. There are some notes starting with `NOTE:` and it would be really great if you could tell me you opinion about these or not only these (for example as an issue). And it would be even better if you could support it via example. Thank you for your possible feedback.
 
 ## Installation
 
@@ -50,7 +54,7 @@ Tipograph replaces straight double and single quotes into curly ones. It can als
 
 Tipograph replaces more than one space with single one. And it also put non breaking space after some symbols where it should be.
 
-### Hyphens and dashes
+### Hyphens
 
 People usually type hyphen where should be dash. Tipograph tries to put it right. `--` is replaced with en dash and `---` is replaced with em dash. And it also knows the correct character for minus.
 
@@ -85,6 +89,14 @@ replace.configure({
     quotesFormat : 'double-open-down double-open-up single-open-down single-open-up'
 });
 ```
+
+## Todo
+
+* improve documentation a lot
+* ampersand symbol should be surrounded by non breaking spaces
+* non breaking space between last two words of each paragraph to avoid a final line of text with only one word (?)
+* make configurable what to replace and what not to
+* allow to pass callback into each method which will be called with "changes" object where all made changes will be (useful for showing user what has been changed)
 
 ## License
 

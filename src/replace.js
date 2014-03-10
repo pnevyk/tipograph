@@ -1,9 +1,9 @@
 /**
  * @module  Languages
  * @author Petr Nevyhoštěný
- * @version 0.1.0
+ * @version 0.2.0
  * @license https://github.com/nevyk/tipograph/blob/master/LICENSE MIT License
- * @description This module provides just predefined quotes format for some languages
+ * @description This module just provides predefined quotes format for some languages
  */
 
 (function () {
@@ -61,7 +61,8 @@
     };
 
     var Replace = function (defaults) {
-        this.config = defaults;
+        this.config = {};
+        extend(this.config, defaults);
     };
 
     Replace.prototype.configure = function (options) {
@@ -71,7 +72,8 @@
     Replace.prototype.all = function (input) {
         input = this.spaces(input);
         input = this.quotes(input);
-        input = this.hyphensAndDashes(input);
+        input = this.mathSigns(input);
+        input = this.hyphens(input);
         input = this.symbols(input);
 
         return input;
@@ -107,10 +109,10 @@
                     .replace(symbolsPattern, '$1\u00A0');
     };
 
-    Replace.prototype.hyphensAndDashes = function (input) {
+    Replace.prototype.hyphens = function (input) {
         var //en dash (some people type -- instead of en dash)
             enDashPattern = /\-\-/g,
-            //em dash (some people type --- instead of en dash)
+            //em dash (some people type --- instead of em dash)
             emDashPattern = /\-\-\-/g,
             sentenceBreakPattern = /\s\-\s/g,
             //range between numbers
@@ -120,11 +122,8 @@
             //because we don't know if it is range or not)
             //NOTE: consider if this may be used
             //it could lead to wrong replacements
-            letterRangePattern = /([A-Z])\-([A-Z])/g,
-            //NOTE: consider if these may be used
-            //they could lead to wrong replacements
-            subtractionPattern = /(\d\s)\-(\s\d)/g,
-            minusPattern = /\-(\d)/g;
+            //NOTE: consider if e.g. A-z or a-Z may be recognized as range
+            letterRangePattern = /([A-Z])\-([A-Z])/g;
 
         //NOTE: consider to use non breaking hyphens
         //as replacement for user typed normal hyphens
@@ -132,13 +131,40 @@
 
         return input.replace(emDashPattern, '\u2014')
                     .replace(enDashPattern, '\u2013')
+                    .replace(numberRangePattern, '$1\u2013$2')
                     //consider use of em dash without spaces
                     //this may be configuration option
-                    .replace(sentenceBreakPattern, ' \u2013 ')
+                    .replace(sentenceBreakPattern, '\u0020\u2013\u0020')
+                    .replace(letterRangePattern, '$1\u2013$2');
+    };
+    
+    Replace.prototype.mathSigns = function (input) {
+        var //NOTE: consider if these may be used
+            //they could lead to wrong replacements
+            subtractionPattern = /(\d\s)\-(\s\d)/g,
+            minusPattern = /\-(\d)/g,
+            //a lot of people use "x" letter as symbol of multiplication
+            //spaces around "x" are important
+            //because e.g. 2x3 might not be multiplication
+            //but just unknow number between 2 and 3
+            multiplicationPattern = /(\d\s)x(\s\d)/g,
+            //spaces around slash are important
+            //because e.g. 34/2 might not be division
+            //NOTE: consider if this may be used
+            //it could lead to wrong replacements
+            divisionPattern = /(\d\s)\/(\s\d)/g,
+            plusMinusPattern = /\+\-/g,
+            inequalityPattern = /\!\=|<>/g;
+            
+        return input//NOTE: minus character should look exactly like en dash
+                    //consider to use en dash instead of minus
                     .replace(subtractionPattern, '$1\u2212$2')
                     .replace(minusPattern, '\u2212$1')
-                    .replace(numberRangePattern, '$1\u2013$2')
-                    .replace(letterRangePattern, '$1\u2013$2');
+                    //NOTE: shouldn't be there non breaking spaces?
+                    .replace(multiplicationPattern, '$1\u00D7$2')
+                    .replace(divisionPattern, '$1\u00F7$2')
+                    .replace(plusMinusPattern, '\u00B1')
+                    .replace(inequalityPattern, '\u2260');
     };
 
     Replace.prototype.symbols = function (input) {
@@ -146,22 +172,16 @@
             copyrightPattern = /(\s|^)\((C|c)\)\s?/g,
             trademarkPattern = /\((TM|tm)\)\s?/g,
             registeredPattern = /\((R|r)\)\s?/g,
-            //a lot of people use "x" letter as symbol of multiplication
-            multiplicationPattern = /(\d\s?)x(\s?\d)/g,
-            //Spaces around slash are important
-            //because e.g. 34/2 might not be division
-            //NOTE: consider if this may be used
-            //it could lead to wrong replacements
-            divisionPattern = /(\d\s)\/(\s\d)/g,
-            ellipsisPattern = /\.\.\./g;
+            //change three dots into ellipsis only
+            //when it'not surrounded by other dots
+            //because when user types a lot of dots
+            //he might not want to replace it with ellipsis
+            ellipsisPattern = /([^\.]|^)\.\.\.([^\.]|$)/g;
 
         return input.replace(copyrightPattern, '$1\u00A9\u00A0')
                     .replace(trademarkPattern, '\u2122\u00A0')
                     .replace(registeredPattern, '\u00AE\u00A0')
-                    //NOTE: shouldn't be there non breaking spaces?
-                    .replace(multiplicationPattern, '$1\u00D7$2')
-                    .replace(divisionPattern, '$1\u00F7$2')
-                    .replace(ellipsisPattern, '\u2026');
+                    .replace(ellipsisPattern, '$1\u2026$2');
     };
 
     if (typeof window !== 'undefined') {

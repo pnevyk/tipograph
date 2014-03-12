@@ -1,7 +1,7 @@
 /**
  * @module  Languages
  * @author Petr Nevyhoštěný
- * @version 0.2.0
+ * @version 0.2.1
  * @license https://github.com/nevyk/tipograph/blob/master/LICENSE MIT License
  * @description This module just provides predefined quotes format for some languages
  */
@@ -84,11 +84,21 @@
             doublePattern = /"([^"]*)"/g,
             inchPattern = /(\d)"/g,
             footPattern = /(\d)'/g,
-            apostrophePattern = /(\w)'(\w)/g;
+            apostrophePattern = /(\w)'(\w)/g,
+            //some people type two commas in order to make
+            //quote look like double low-9 quotation mark
+            twoCommasPattern = /\,\,/g,
+            //some people type one comma in order to make
+            //quote look like single low-9 quotation mark
+            //NOTE: consider if this may be used
+            //it could lead to wrong replacements
+            oneCommaPattern = /(\s|^)\,([^'\s]*')/g;
 
         var quotes = parseQuotesFormat(this.config.quotesFormat);
 
-        return input.replace(apostrophePattern, '$1\u2019$2') //apostrophe
+        return input.replace(twoCommasPattern, '\u0022')
+                    .replace(oneCommaPattern, '$1\u0027$2')
+                    .replace(apostrophePattern, '$1\u2019$2') //apostrophe
                     .replace(inchPattern, '$1\u2033') //double prime
                     .replace(footPattern, '$1\u2032') //prime
                     //see parseQuotesFormat() to check unicode characters

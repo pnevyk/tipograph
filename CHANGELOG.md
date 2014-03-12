@@ -1,3 +1,11 @@
+## 0.2.1
+
+Make some changes in `quotes()` method. It replaces `,,` with double quote and `,` with single quote. It has two reasons. First, it looks horrible. Second, it breaks the feature to find quote pairs.
+
+### Replace
+
+* `,,` and `,` (when it is recognized as it should be) are replaced with correct quotes
+
 ## 0.2.0
 
 A lot of tests were made. Tipograph is now almost fully covered with tests. And some changes has been made.

@@ -17,6 +17,11 @@ describe('Quotes', function () {
         it('should find correct pairs of quotes if there are more than one', function() {
             expect(replace.quotes('"lorem" and "ipsum"')).to.be('\u201Clorem\u201D and \u201Cipsum\u201D');
         });
+        
+        it('should replace two consecutive commas with correct quote', function() {
+            expect(replace.quotes(',,')).to.be('\u0022');
+            expect(replace.quotes(',,lorem"')).to.be('\u201Clorem\u201D');
+        });
     });
     
     describe('- single quotes', function(){
@@ -27,6 +32,14 @@ describe('Quotes', function () {
         
         it('should find correct pairs of quotes if there are more than one', function() {
             expect(replace.quotes('\'lorem\' and \'ipsum\'')).to.be('\u2018lorem\u2019 and \u2018ipsum\u2019');
+        });
+        
+        it('should replace one comma with correct quote', function() {
+            expect(replace.quotes(',lorem\'')).to.be('\u2018lorem\u2019');
+        });
+        
+        it('should not replace one comma with correct quote if it is meant really as a comma', function() {
+            expect(replace.quotes('lorem, ipsum')).to.be('lorem, ipsum');
         });
     });
     

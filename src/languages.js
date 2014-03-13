@@ -1,5 +1,5 @@
 /**
- * @module  Languages
+ * @module Languages
  * @author Petr Nevyhoštěný
  * @version 0.1.0
  * @license https://github.com/nevyk/tipograph/blob/master/LICENSE MIT License

@@ -171,11 +171,12 @@ replace.configure({
 
 * ampersand symbol should be surrounded by non breaking spaces
 * non breaking space between last two words of each paragraph to avoid a final line of text with only one word (?)
-* make configurable what to replace and what not to
-* allow to pass callback into each method which will be called with "changes" object (useful for showing to user what was changed)
+* make configurable what to replace and what not to (?)
+* __allow to pass callback into each method which will be called with "changes" object (useful for showing to user what was changed)__
 * add support for other symbols such as `<-`, `->`, `<->`, `<3`, `x^2`, ...
 * add support for language related non breaking spaces e.g. after prepositions
-* add possibility to define custom typography rules
+* __add possibility to define custom typography rules__
+* __keep HTML tags as they are (don't replace quotes, ...)__
 
 ## License
 

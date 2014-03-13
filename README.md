@@ -177,6 +177,7 @@ replace.configure({
 * add support for language related non breaking spaces e.g. after prepositions
 * __add possibility to define custom typography rules__
 * __keep HTML tags as they are (don't replace quotes, ...)__
+* __don't replace anything within `pre` or `code` tags__
 
 ## License
 

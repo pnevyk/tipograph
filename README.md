@@ -161,6 +161,10 @@ replace.configure({
 });
 ```
 
+## HTML support
+
+Tipograph is built not to affect any HTML code. So every HTML tag will be exactly the same before and after tranformation. And it also keeps text within `pre` and `code` tags. Hence don't afraid to use Tipograph on your HTML content.
+
 <a name="resources"></a>
 ## Resources
 
@@ -176,8 +180,6 @@ replace.configure({
 * add support for other symbols such as `<-`, `->`, `<->`, `<3`, `x^2`, ...
 * add support for language related non breaking spaces e.g. after prepositions
 * __add possibility to define custom typography rules__
-* __keep HTML tags as they are (don't replace quotes, ...)__
-* __don't replace anything within `pre` or `code` tags__
 
 ## License
 

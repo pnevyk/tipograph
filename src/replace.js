@@ -329,7 +329,7 @@
     Replace.prototype.symbols = function (input, escapeHtml) {
         escapeHtml = typeof escapeHtml === 'undefined' ? true : escapeHtml;
         
-        var //there is space before (c) not to match e.g. this 12(c)
+        var //there is \s before (C|c) not to match e.g. this 12(c)
             copyrightPattern = /(\s|^)\((C|c)\)\s?/g,
             trademarkPattern = /\((TM|tm)\)\s?/g,
             registeredPattern = /\((R|r)\)\s?/g,

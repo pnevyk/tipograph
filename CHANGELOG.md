@@ -1,3 +1,11 @@
+## 0.3.0
+
+HTML support was added. It doesn't affect any HTML tag and also doesn't transform content within `pre` and `code` tags.
+
+### Replace
+
+* HTML support was added
+
 ## 0.2.1
 
 Make some changes in `quotes()` method. It replaces `,,` with double quote and `,` with single quote. It has two reasons. First, it looks horrible. Second, it breaks the feature to find quote pairs.

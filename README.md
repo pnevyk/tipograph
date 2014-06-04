@@ -183,4 +183,4 @@ Tipograph is built not to affect any HTML code. So every HTML tag will be exactl
 
 ## License
 
-Tipograph is MIT licensed. Feel free to use it, contribute or spread the word. Created with love by Petr Nevyhoštěný ([Twitter](https://twitter.com/nevyk3)).
+Tipograph is MIT licensed. Feel free to use it, contribute or spread the word. Created with love by Petr Nevyhoštěný ([Twitter](https://twitter.com/pnevyk)).

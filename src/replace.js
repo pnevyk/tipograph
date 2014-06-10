@@ -355,12 +355,12 @@
         return escapeHtml ? html.unescape(input) : input;
     };
     
-    Replace.prototype.addCustomRule = function (regexp, replacement) {
-        if (typeof regexp !== 'string' && !(regexp instanceof RegExp)) throw 'regexp must be a string or a regular expression';
+    Replace.prototype.addCustomRule = function (search, replacement) {
+        if (typeof search !== 'string' && !(search instanceof RegExp)) throw 'regexp must be a string or a regular expression';
         if (typeof replacement !== 'string' && typeof replacement !== 'function') throw 'replacement must be a string or a function';
         
         this.config.customRules.push({
-            regexp : regexp,
+            search : search,
             replacement : replacement
         });
     };
@@ -374,7 +374,7 @@
         }
 
         this.config.customRules.forEach(function (rule) {
-            input = input.replace(rule.regexp, rule.replacement);
+            input = input.replace(rule.search, rule.replacement);
         });
                     
         return escapeHtml ? html.unescape(input) : input;

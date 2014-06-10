@@ -104,6 +104,36 @@ If we or our users are lazy to learn how to type correct special symbols (see be
 var output = replace.symbols('your text');
 ```
 
+### Custom rules
+
+You can also define your own rules because they are missing in Tipograph.
+
+```js
+//add custom rules
+replace.addCustomRule('foo', 'bar');
+replace.addCustomRule(/qu(.)/, function (match, p1, offset, string) {
+	if (p1 === 'o') return 'Quo';
+    return match;
+});
+
+//apply them
+var output = replace.custom('your text');
+```
+
+#### addCustomRule(search, replacement)
+
+##### search
+
+Type: `RegExp|String`
+
+Define what will be searched in input to be replaced.
+
+##### replacement
+
+Type: `String|Function`
+
+Define how found values will be replaced. The `String.prototype.replace` method is applied to input so format of this parameter could be the same as described [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace).
+
 <a name="languages"></a>
 ## Quotes in different languages
 
@@ -175,11 +205,9 @@ Tipograph is built not to affect any HTML code. So every HTML tag will be exactl
 
 * ampersand symbol should be surrounded by non breaking spaces
 * non breaking space between last two words of each paragraph to avoid a final line of text with only one word (?)
-* make configurable what to replace and what not to (?)
 * __allow to pass callback into each method which will be called with "changes" object (useful for showing to user what was changed)__
 * add support for other symbols such as `<-`, `->`, `<->`, `<3`, `x^2`, ...
 * add support for language related non breaking spaces e.g. after prepositions
-* __add possibility to define custom typography rules__
 
 ## License
 

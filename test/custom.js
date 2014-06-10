@@ -16,8 +16,8 @@ describe('Custom', function() {
     describe('- adding', function() {
         it('should add custom rule into config', function () {
             expect(replace.config.customRules).to.have.length(1);
-            expect(replace.config.customRules[0]).to.have.keys(['regexp', 'replacement']);
-            expect(replace.config.customRules[0].regexp).to.be(regexp);
+            expect(replace.config.customRules[0]).to.have.keys(['search', 'replacement']);
+            expect(replace.config.customRules[0].search).to.be(regexp);
             expect(replace.config.customRules[0].replacement).to.be(replacement);
         });
         

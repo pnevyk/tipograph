@@ -111,7 +111,7 @@ You can also define your own rules because they are missing in Tipograph.
 ```js
 //add custom rules
 replace.addCustomRule('foo', 'bar');
-replace.addCustomRule(/qu(.)/, function (match, p1, offset, string) {
+replace.addCustomRule(/qu(.)/g, function (match, p1, offset, string) {
 	if (p1 === 'o') return 'Quo';
     return match;
 });

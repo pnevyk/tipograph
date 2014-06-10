@@ -1,13 +1,14 @@
 /**
  * @module Replace
  * @author Petr Nevyhoštěný
- * @version 0.3.0
+ * @version 0.3.1
  * @license https://github.com/nevyk/tipograph/blob/master/LICENSE MIT License
  * @description This module just provides predefined quotes format for some languages
  */
 
 (function () {
     var config = {
+        customRules : [],
         //see parseQuotesFormat for possible values
         quotesFormat : 'double-open-up double-close-up single-open-up single-close-up'
     };
@@ -184,6 +185,7 @@
         input = this.mathSigns(input, false);
         input = this.hyphens(input, false);
         input = this.symbols(input, false);
+        input = this.symbols(input, false);
 
         return html.unescape(input);
     };
@@ -349,6 +351,31 @@
                      .replace(trademarkPattern, '\u2122\u00A0')
                      .replace(registeredPattern, '\u00AE\u00A0')
                      .replace(ellipsisPattern, '$1\u2026$2');
+                    
+        return escapeHtml ? html.unescape(input) : input;
+    };
+    
+    Replace.prototype.addCustomRule = function (regexp, replacement) {
+        if (typeof regexp !== 'string' && !(regexp instanceof RegExp)) throw 'regexp must be a string or a regular expression';
+        if (typeof replacement !== 'string' && typeof replacement !== 'function') throw 'replacement must be a string or a function';
+        
+        this.config.customRules.push({
+            regexp : regexp,
+            replacement : replacement
+        });
+    };
+    
+    Replace.prototype.custom = function (input, escapeHtml) {
+        escapeHtml = typeof escapeHtml === 'undefined' ? true : escapeHtml;
+        
+        if (escapeHtml) {
+            html = new HtmlEscaper();
+            input = html.escape(input);
+        }
+
+        this.config.customRules.forEach(function (rule) {
+            input = input.replace(rule.regexp, rule.replacement);
+        });
                     
         return escapeHtml ? html.unescape(input) : input;
     };

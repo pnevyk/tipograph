@@ -1,3 +1,11 @@
+## 0.3.1
+
+Support for custom defined typography rules.
+
+### Replace
+
+* Custom rules was added
+
 ## 0.3.0
 
 HTML support was added. It doesn't affect any HTML tag and also doesn't transform content within `pre` and `code` tags.

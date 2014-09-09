@@ -1,3 +1,7 @@
+## 0.3.2
+
+Support for streams
+
 ## 0.3.1
 
 Support for custom defined typography rules.

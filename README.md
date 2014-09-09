@@ -134,6 +134,78 @@ Type: `String|Function`
 
 Define how found values will be replaced. The `String.prototype.replace` method is applied to input so format of this parameter could be the same as described [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace).
 
+## Stream
+
+Tipograph also supports streams. If you want to transform input from one stream and write them to another, here is `tipograph.createStream([options])` method for you.
+
+NOTE: This is supported only in Node environment.
+
+```js
+var fs = require('fs');
+var tipograph = require('tipograph');
+
+fs.createReadStream('source.txt')
+    .pipe(tipograph.createStream())
+    .pipe(fs.createWriteStream('destination.txt'));
+```
+
+Stream applies all replacements by default but you can change it using options object. Just pass what you want to disable e.g. like that:
+
+```js
+var stream = tipograph.createStream({ hyphens : false, spaces : false });
+```
+
+### Options
+
+#### quotes
+
+Type: `Boolean`
+Default: `true`
+
+Specify if Tipograph apply `replace.quotes(input)`.
+
+#### spaces
+
+Type: `Boolean`
+Default: `true`
+
+Specify if Tipograph apply `replace.spaces(input)`.
+
+#### hyphens
+
+Type: `Boolean`
+Default: `true`
+
+Specify if Tipograph apply `replace.hyphens(input)`.
+
+#### mathSigns
+
+Type: `Boolean`
+Default: `true`
+
+Specify if Tipograph apply `replace.quotes(input)`.
+
+#### symbols
+
+Type: `Boolean`
+Default: `true`
+
+Specify if Tipograph apply `replace.symbols(input)`.
+
+#### custom
+
+Type: `Boolean`
+Default: `true`
+
+Specify if Tipograph apply `replace.custom(input)`.
+
+#### html
+
+Type: `Boolean`
+Default: `true`
+
+Specify if Tipograph should keep HTML tags with attributes as they are.
+
 <a name="languages"></a>
 ## Quotes in different languages
 

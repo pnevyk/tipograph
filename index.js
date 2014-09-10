@@ -3,6 +3,6 @@ module.exports = {
     Languages : require('./src/languages'),
     createStream : function (options) {
         var Stream = require('./src/stream');
-        return new Stream(require('./src/replace'), options);
+        return new Stream(options);
     }
 };

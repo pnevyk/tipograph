@@ -1,7 +1,7 @@
 /**
  * @module Stream
  * @author Petr Nevyhoštěný
- * @version 0.1.0
+ * @version 0.1.1
  * @license https://github.com/nevyk/tipograph/blob/master/LICENSE MIT License
  * @description This module wraps Replace module to be used as a stream
  */
@@ -9,15 +9,21 @@
 (function () {
     if (typeof window === 'undefined') {
         var Transform = require('stream').Transform;
+        var replace = require('./replace');
+        var languages = require('./languages');
         require('util').inherits(Stream, Transform);
         module.exports = Stream;
+    }
+    
+    else {
+        throw new Error('Tipograph stream is not supported in browser');
     }
     
     var i, len,
         parts = ['quotes', 'spaces', 'hyphens', 'mathSigns', 'symbols', 'custom'];
     
-    function Stream(replace, options) {
-        if (!(this instanceof Stream)) return new Stream(replace);
+    function Stream(options) {
+        if (!(this instanceof Stream)) return new Stream(options);
         Transform.call(this);
         
         options = options || {};
@@ -28,7 +34,10 @@
         
         options.html = options.html === false ? false : true;
         
-        this.replace = replace;
+        if (options.language) {
+            replace.configure(languages[options.language]);
+        }
+        
         this._data = '';
         this._options = options;
     }
@@ -41,7 +50,7 @@
     Stream.prototype._flush = function (done) {
         for (i = 0, len = parts.length; i < len; i++) {
             if (this._options[parts[i]]) {
-                this._data = this.replace[parts[i]](this._data, this._options.html);
+                this._data = replace[parts[i]](this._data, this._options.html);
             }
         }
         

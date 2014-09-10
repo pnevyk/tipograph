@@ -1,3 +1,12 @@
+## 0.3.3
+
+Make some changes in stream implementation
+
+### Stream
+
+* languages support
+* slightly different implementation
+
 ## 0.3.2
 
 Support for streams

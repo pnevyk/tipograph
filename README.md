@@ -206,6 +206,12 @@ Default: `true`
 
 Specify if Tipograph should keep HTML tags with attributes as they are.
 
+#### language
+
+Type: `String`
+
+Set a language from `tipograph.Languages` as language to be used for quotes.
+
 <a name="languages"></a>
 ## Quotes in different languages
 

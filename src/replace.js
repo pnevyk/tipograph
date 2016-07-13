@@ -379,14 +379,14 @@
                     
         return escapeHtml ? html.unescape(input) : input;
     };
-
-    if (typeof window !== 'undefined') {
+    
+    if (typeof module === 'object' && module.exports) {
+        module.exports = new Replace(config);
+    }
+    
+    else if (typeof window !== 'undefined') {
         var Tipograph = window.Tipograph || {};
         Tipograph.Replace = new Replace(config);
         window.Tipograph = Tipograph;
-    }
-
-    else {
-        module.exports = new Replace(config);
     }
 })();

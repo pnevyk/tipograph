@@ -66,13 +66,14 @@
         )
     };
 
-    if (typeof window !== 'undefined') {
+    if (typeof module === 'object' && module.exports) {
+        module.exports = languages;
+    }
+    
+    else if (typeof window !== 'undefined') {
         var Tipograph = window.Tipograph || {};
         Tipograph.Languages = languages;
         window.Tipograph = Tipograph;
     }
-
-    else {
-        module.exports = languages;
-    }
+    
 })();

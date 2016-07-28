@@ -1,3 +1,7 @@
+## 0.3.4
+
+Support Webpack module loader
+
 ## 0.3.3
 
 Make some changes in stream implementation

@@ -1,7 +1,7 @@
 /**
  * @module Languages
  * @author Petr Nevyhoštěný
- * @version 0.1.0
+ * @version 0.1.1
  * @license https://github.com/nevyk/tipograph/blob/master/LICENSE MIT License
  * @description This module provides just predefined quotes format for some languages
  */
@@ -69,11 +69,11 @@
     if (typeof module === 'object' && module.exports) {
         module.exports = languages;
     }
-    
+
     else if (typeof window !== 'undefined') {
         var Tipograph = window.Tipograph || {};
         Tipograph.Languages = languages;
         window.Tipograph = Tipograph;
     }
-    
+
 })();

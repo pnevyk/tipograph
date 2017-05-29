@@ -6,14 +6,14 @@ var gulp = require('gulp'),
 
 var pkg = require('./package.json'),
     banner = '/* tipograph (<%= file %>) v<%= pkg.version %> by Petr Nevyhoštěný - https://github.com/nevyk/tipograph (MIT licensed) */\n';
-    
+
 gulp.task('build', function () {
     gulp.src('src/replace.js')
         .pipe(jshint())
         .pipe(uglify())
     	.pipe(header(banner, { pkg : pkg, file : 'replace' }))
         .pipe(gulp.dest('dest'));
-    
+
     gulp.src('src/languages.js')
         .pipe(jshint())
         .pipe(uglify())

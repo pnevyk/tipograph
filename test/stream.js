@@ -6,7 +6,7 @@ var Readable = require('stream').Readable;
 var Writable = require('stream').Writable;
 
 describe('Stream', function () {
-    describe('- keeping behaviour', function(){
+    describe('- keeping behaviour', function (){
         it('should apply the same changes as Replace module does', function () {
             var source = Readable();
             var assertion = Writable();
@@ -21,12 +21,12 @@ describe('Stream', function () {
                 expect(chunk.toString()).to.be('\u201Clorem\u201Dipsum\u0022');
                 done();
             };
-            
+
             source.pipe(require('../index').createStream()).pipe(assertion);
         });
     });
-    
-    describe('- applying options', function(){
+
+    describe('- applying options', function (){
         it('should not apply functions if we do not want to', function () {
             var source = Readable();
             var assertion = Writable();
@@ -42,7 +42,7 @@ describe('Stream', function () {
                 expect(chunk.toString()).to.be('\u201Clorem\u201D - ipsum\u0022');
                 done();
             };
-            
+
             source.pipe(require('../index').createStream({ hyphens : false })).pipe(assertion);
         });
     });

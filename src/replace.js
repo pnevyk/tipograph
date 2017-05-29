@@ -198,6 +198,7 @@
             inchPattern = /(\d)"/g,
             footPattern = /(\d)'/g,
             apostrophePattern = /(\w)'(\w)/g,
+            yearPattern = /(\s)'(\d{2})/g,
             //some people type two commas in order to make
             //quote look like double low-9 quotation mark
             twoCommasPattern = /\,\,/g,
@@ -218,6 +219,7 @@
         input = input.replace(twoCommasPattern, '\u0022')
                      .replace(oneCommaPattern, '$1\u0027$2')
                      .replace(apostrophePattern, '$1\u2019$2') //apostrophe
+                     .replace(yearPattern, '$1\u2019$2') //apostrophe before year
                      .replace(inchPattern, '$1\u2033') //double prime
                      .replace(footPattern, '$1\u2032') //prime
                      //see parseQuotesFormat() to check unicode characters

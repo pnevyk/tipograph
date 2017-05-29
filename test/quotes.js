@@ -67,4 +67,12 @@ describe('Quotes', function () {
             expect(replace.quotes('\'lorem')).to.be('\u2019lorem');
         });
     });
+
+    describe('- mixed', function () {
+        it('should handle mixed double and single quotes also with apostrophes in the sentence in various contexts', function () {
+            var before = 'I wasn\'t a particular fan of the music in the \'80s. And then she blurted, "I thought you said, \'I don\'t like \'80s music\'?"';
+            var after = 'I wasn\u2019t a particular fan of the music in the \u201980s. And then she blurted, \u201CI thought you said, \u2018I don\u2019t like \u201980s music\u2019?\u201D';
+            expect(replace.quotes(before)).to.be(after);
+        });
+    });
 });

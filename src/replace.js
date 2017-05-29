@@ -1,7 +1,7 @@
 /**
  * @module Replace
  * @author Petr Nevyhoštěný
- * @version 0.3.4
+ * @version 0.3.5
  * @license https://github.com/nevyk/tipograph/blob/master/LICENSE MIT License
  * @description This module just provides predefined quotes format for some languages
  */

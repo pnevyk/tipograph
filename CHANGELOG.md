@@ -1,3 +1,7 @@
+## 0.3.5
+
+Handle apostrophe before two-digit years
+
 ## 0.3.4
 
 Support Webpack module loader

@@ -114,6 +114,14 @@ There are a lot of special symbols which we don’t know how to write and that m
 
 The input might be in a different format than just a plain text and it might be important to take it into account. For example, you don’t want to apply typography rules inside HTML tag. For that case, you can specify the format preprocessor. There are few already made, and again, you can define your own (see [format documentation](src/formats/readme.md) for more details).
 
+# html
+
+HTML tags are kept as they are. Moreover, it also preserves whole contents of the following tags: pre, code, style, script.
+
+# plain
+
+Input content is preserved as it is.
+
 ## Languages
 
 Different languages may have different rules. The most notable example are quotes. There are few predefined languages and you can define your own (see [language documentation](src/languages/readme.md) for more details). The language contains configuration for some presets (at the moment, only *quotes*) and moreover it contains rules specific for the language. Just don’t forget to include *language* preset into *presets* option.

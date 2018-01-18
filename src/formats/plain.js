@@ -1,3 +1,7 @@
+/// # plain
+///
+/// Input content is preserved as it is.
+
 export default function () {
     return function (input) {
         return [{ transform: true, content: input }];

@@ -1,292 +1,194 @@
-# Tipograph
+# tipograph
 
-First of all - correct typography is important. Even if we aren't typography freaks we must say that curly quotes look much better than straight ones. But, let's be honest, not everyone is too thorough to learn all these typography rules. And even if we know them, it's pretty frustrating to press these alt/option combinations for em dash or copyright symbol.
+*A little javascript library and command line tool that makes your written content more typographically correct.*
 
-And hence there is Tipograph. It can manage a lot of these rules for you and then you could concentrate just on your words. After you are done take your text and pass it into any Replace module method. It will return the typographically correct sequence of characters. Isn't it amazing! And it can be used in both browser and Node.
+> “When you ig­nore ty­pog­ra­phy, you’re ig­nor­ing an op­por­tu­nity to im­prove the ef­fec­tive­ness of your writing.” — Matthew Butterick
 
-When creating this I don't invent all these rules myself. I have been following some of (I think trustworthy) [resources](#resources). It's impossible to follow all these rules because some of them cannot be managed by code without a complex understanding of context. I hope this is quite enough. And a lot improvements would come.
+Even if typography can be seen as a set of rules given by some freaks, it’s actually quite an important aspect of written content. Besides it brings an aesthetic value, it also helps a person to read the text more fluently and comfortably. And curly quotes just look great!
 
-If you are interested in Tipograph, maybe you will be pleased when I tell you I am going to write module which will provide live replacement and will be useful for (your) word processor.
+However, to be typographically correct one has to make some non-trivial effort, be it to learn the rules or to find out how to type all those special characters instead of these present on his keyboard. And therefore *tipograph* comes here to help. It tries its best to fix a text and apply the rules.
 
-## Note
+It’s impossible to manage all rules out there, because *tipograph* is just a set of simple transformation rules and it doesn’t understand wider linguistic context. And sometimes it will fail. But still, the help deserves to be appreciated. Even when it costs nothing.
 
-I would very appreciate if you could check the source code. There are some notes starting with `NOTE:` and it would be really great if you could tell me your opinion (for example as an issue) about these or not only these. And it would be even better if you could support it via example. Thank you for your possible feedback.
+*In version 0.4.0 there are API breaking changes as it’s a complete rewrite. However, the migration should not be difficult. [Here](https://github.com/pnevyk/tipograph/tree/v0.3.5) is the documentation for the old API.*
+
+*Tipograph is not in stable phase yet. Rules will be added and improved over time. Feel free to make suggestion or ask question you have any.*
 
 ## Installation
 
-### Node
+**In node**
 
-```bash
-$ npm install tipograph
+```shell
+# to use it as library
+npm install --save tipograph
+
+# to use it as command line utility
+npm install --global tipograph
 ```
 
-### Browser
+**In brower**
 
 ```html
-<script type="text/javascript" src="path/to/replace.js"></script>
-<!-- optional -->
-<script type="text/javascript" src="path/to/languages.js"></script>
+<script type="text/javascript" src="dest/tipograph.min.js"></script>
 ```
 
 ## Usage
 
-Usage of Tipograph is really simple. Just pass the input and get the transformed result.
-
 ```js
-//node
-var replace = require('tipograph').Replace;
-
-//browser
-var replace = window.Tipograph.Replace;
-
-//usage - replace all what is shown below
-replace.all('"I\'m Tipograph - a library for better typography"');
-```
-
-It will change __"I'm Tipograph - a library for better typography"__ into __“I’m Tipograph – a library for better typography”__. Isn't it much better? I think it is. And this is just beginning!
-
-## What it can do
-
-### Quotes
-
-Tipograph finds pairs of straight quotes (both double and single) and replaces them with curly ones. And it also respects format/language you have defined (see [quotes in different languages](#languages)). Furthermore, Tipograph replaces all single straight quotes which are determined as apostrophe with correct character. Also foot and inch signs are replaced correctly with primes or double primes respectively. Next feature of Tipograph is to recognize some bad habbits of users - some people type two commas in order to make quote look like double low-9 quotation mark or one comma to make quote look like single low-9 quotation mark. This is horrible and even more - it breaks the feature to find quote pairs. In the case of one comma it recognizes what should be comma and what should be single quote.
-
-```js
-var output = replace.quotes('your text');
-```
-
-### Spaces
-
-There should't be more than two spaces within your text so Tipograph replaces them with single one. And it also put non breaking space after some symbols where it should be. Currently the symbols are:
-
-* paragraph (&para;)
-* section sign (&sect;)
-* copyright (&copy;)
-* trademark (&trade;)
-* registered trademark (&reg;)
-
-```js
-var output = replace.spaces('your text');
-```
-
-### Hyphens
-
-Some people type two consecutive hyphens (`--`) as representation of en dash (&ndash;) and three consecutive hyphens (`---`) as representation of em dash (&mdash;). This is wrong. Therefore Tipograph replaces these sequences with correct characters. Furthermore, ranges of values should be written with en dashes. So Tipograph tries to recognize ranges and replaces hyphen with en dash. It also finds sentence breaks where should be used en dash (or em dash without spaces, this will be configuration option) and corrects it.
-
-```js
-var output = replace.hyphens('your text');
-```
-
-### Math signs
-
-A lot of people use generally accepted substitutions for some math signs (for example letter "x" for multiplication symbol or "!=" sequence instead of inequality sign). The correct characters look much better than generally used ones. Replaced signs:
-
-* __minus__ (`2 - 1`, `-3`, not `2-1`) - hyphen is replaced with minus character (&ndash;)
-* __multiplication__ (`2 x 3`, not `1x2`) - letter "x" is replaced with multiplication sign (&times;)
-* __division__ (`6 / 3`, not `10/5`) - forward slash is replaced with division sign (&divide;)
-* __plus-minus__ (`+-`) - sequence of plus and hyphen is replaced with plus-minus sign (&plusmn;)
-* __inequality__ (`!=`, `<>`) - these sequences, rather used in programming, are replaced with correct inequality sign (&ne;)
-
-```js
-var output = replace.mathSigns('your text');
-```
-
-### Symbols
-
-If we or our users are lazy to learn how to type correct special symbols (see below) we need to replace generally used substitutions with these symbols. In this moment the symbols are:
-
-* __copyright__ - `(c)`, `(C)` => &copy;
-* __trademark__ - `(tm)`, `(TM)` => &trade;
-* __registered trademark__ - `(r)`, `(R)` => &reg;
-* __ellipsis__ - `...`, not `....` => &hellip;
-
-```js
-var output = replace.symbols('your text');
-```
-
-### Custom rules
-
-You can also define your own rules because they are missing in Tipograph.
-
-```js
-//add custom rules
-replace.addCustomRule('foo', 'bar');
-replace.addCustomRule(/qu(.)/g, function (match, p1, offset, string) {
-	if (p1 === 'o') return 'Quo';
-    return match;
-});
-
-//apply them
-var output = replace.custom('your text');
-```
-
-#### addCustomRule(search, replacement)
-
-##### search
-
-Type: `RegExp|String`
-
-Define what will be searched in input to be replaced.
-
-##### replacement
-
-Type: `String|Function`
-
-Define how found values will be replaced. The `String.prototype.replace` method is applied to input so format of this parameter could be the same as described [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace).
-
-## Stream
-
-Tipograph also supports streams. If you want to transform input from one stream and write them to another, here is `tipograph.createStream([options])` method for you.
-
-NOTE: This is supported only in Node environment.
-
-```js
-var fs = require('fs');
+// in browser, tipograph is accessible as property of window
 var tipograph = require('tipograph');
 
-fs.createReadStream('source.txt')
-    .pipe(tipograph.createStream())
-    .pipe(fs.createWriteStream('destination.txt'));
+// initialize new instance
+var typo1 = tipograph();
+
+// initialize new instance with different configuration
+var typo2 = tipograph({
+    format: 'html',
+    language: 'czech',
+    presets: ['quotes', 'language']
+});
+
+typo2('"Hello <b>world</b>!"') // „Hello <b>world</b>!“
+
+// stream support (only in node)
+var fs = require('fs');
+
+fs.createReadStream('input.txt')
+    .pipe(tipograph.createStream(/*{ options }*/))
+    .pipe(fs.createWriteStream('output.txt'));
 ```
 
-Stream applies all replacements by default but you can change it using options object. Just pass what you want to disable e.g. like that:
+### CLI
 
-```js
-var stream = tipograph.createStream({ hyphens : false, spaces : false });
+*Tipograph* provides also command line interface. You just need to install it globally.
+
+**Basic usage**
+
+```shell
+tipograph -i input.txt -o output.txt
 ```
 
-### Options
+**Help**
 
-#### quotes
+```shell
+tipograph --help
+```
 
-Type: `Boolean`
-Default: `true`
+*Note that writing the transformed content into the source file itself results in an empty file. Moreover, you should always check the output if it is correct and make a backup of a source content if you want to write into it back.*
 
-Specify if Tipograph apply `replace.quotes(input)`.
+## Presets
 
-#### spaces
+There is a number of predefined rules which are grouped into presets. By default, all these presets are used, although you can pick just those you want by passing an array into *options* object. If you want to apply your own custom rules, you can pass your preset into the array (see [preset documentation](src/presets/readme.md) for more details). Note that the order in *presets* array determines the order of rules application onto the input.
 
-Type: `Boolean`
-Default: `true`
+*Rules mentioned here don’t cover all typography rules, just those which are handled by tipograph. Please, read some other resources in order to be able to make your content better.*
 
-Specify if Tipograph apply `replace.spaces(input)`.
+*Description here is quite a general overview. You can see a lot of examples how these presets behave [here](rules.md)*
 
 #### hyphens
 
-Type: `Boolean`
-Default: `true`
+Hyphens are present on our keyboards and are used mostly to separatare multipart words ("cost-effective") or multiword phrases which need to be together ("high-school grades"). Dashes come in two sizes: en dash and em dash. En dash is used instead of hyphen in number ranges ("1–5″), or if two consecutive hyphens are found. Em dashed is used as a break in sentence ("tipograph — even if it’s just a set of simple rules — can improve typography in your content"), or if three consecutive hyphens are found.
 
-Specify if Tipograph apply `replace.hyphens(input)`.
-
-#### mathSigns
-
-Type: `Boolean`
-Default: `true`
-
-Specify if Tipograph apply `replace.quotes(input)`.
-
-#### symbols
-
-Type: `Boolean`
-Default: `true`
-
-Specify if Tipograph apply `replace.symbols(input)`.
-
-#### custom
-
-Type: `Boolean`
-Default: `true`
-
-Specify if Tipograph apply `replace.custom(input)`.
-
-#### html
-
-Type: `Boolean`
-Default: `true`
-
-Specify if Tipograph should keep HTML tags with attributes as they are.
+*Type of dash used as break in sentence might be dependent on language habits in the future.*
 
 #### language
 
-Type: `String`
+This preset only applies language specific rules defined in language given at tipograph instance initialization.
 
-Set a language from `tipograph.Languages` as language to be used for quotes.
+#### math
 
-<a name="languages"></a>
-## Quotes in different languages
+Unfortunately, majority of nice mathematical symbols is not present on our keyboard. Where it make sense, *tipograph* tries to put them instead of their poor substitues. For example, minus sign (that’s right, even minus sign has its special character) instead of hyphen, multiplication sign instead of the letter "x", etc. Imagine how you would write this formula just by hand: 2 × 3 ≠ 5.
 
-Tipograph knows that different quotes are used in different languages. If you think I should choose different marks in your language, feel free to post an issue. Currently the langugaes are:
+#### quotes
 
-* _chinese_ (「double」 『single』)
-* _czech_ („double“ ‚single‘)
-* _danish_ (»double« „single“)
-* _english_ (“double” ‘single’)
-* _finnish_ (”double” ’single’)
-* _french_ (« double » “single”)
-* _german_ („double“ ‚single‘)
-* _italian_ («double» “single”)
-* _japanese_ (「double」 『single』)
-* _norwegian_ («double» ’single’)
-* _polish_ („double” «single»)
-* _portuguese_ (“double” ‘single’)
-* _russian_ («double» „single“)
-* _spanish_ («double» “single”)
-* _swedish_ (”double” ’single’)
-* _swiss_ («double» ‹single›)
+Nice quotes are probably the most visible feature of correct typography. On our keyboards, we have just these straight one which are pretty ugly. However, *tipograph* tries to replace them with their correct counterparts — and it even takes language habits into account. Moreover, it attempts to handle apostrophes, inch and foot units symbols, or fix some writers' bad habbits (such as two consecutive commas in order to imitate bottom 99-shaped quotes).
 
-But you can use your own configuration of quotes. Just choose from these ones:
+#### spaces
 
-* _double-open-up_ for open double quotes shaped as <sup>66</sup>
-* _single-open-up_ for open single quotes shaped as <sup>6</sup>
-* _double-close-up_ for closing double quotes shaped as <sup>99</sup>
-* _single-close-up_ for closing single quotes shaped as <sup>9</sup>
-* _double-open-down_ for open double quotes shaped as <sub>99</sub>
-* _single-open-down_ for open single quotes shaped as <sub>99</sub>
-* _double-left_ for left-pointing double angle quotes (&laquo;)
-* _single-left_ for left-pointing single angle quotes (&lsaquo;)
-* _double-right_ for right-pointing double angle quotes (&raquo;)
-* _single-right_ for right-pointing single angle quotes (&rsaquo;)
-* _double-left-space_ for left-pointing double angle quotes (&laquo;) followed by non breaking space
-* _single-left-space_ for left-pointing single angle quotes (&lsaquo;) followed by non breaking space
-* _double-space-right_ for right-pointing double angle quotes (&raquo;) followed by non breaking space
-* _single-space-right_ for right-pointing single angle quotes (&rsaquo;) followed by non breaking space
-* _double-top-corner_ for left corner bracket used in CJK (&#12300;)
-* _single-top-corner_ for left white corner bracket used in CJK (&#12302;)
-* _double-bottom-corner_ for right corner bracket used in CJK (&#12301;)
-* _single-bottom-corner_ for right white corner bracket used in CJK (&#12303;)
+Even that they are not visible, spaces play important role in typography. Only one word space should be used at a time. Also, in some cases, there should be non-breaking space instead of normal one (for example after some special symbols).
 
-### Configuration
+#### symbols
 
-```js
-var languages = require('tipograph').Languages;
+There are a lot of special symbols which we don’t know how to write and that makes us sad. Instead, we tend to use some substitues for them. And *tipograph* replaces these substitues with their actual characters, for example copyright or trademark symbols.
 
-//configure with predefined languages
-replace.configure(languages.czech);
-//or with custom string in format of replacement for:
-//left-double right-double left-single right-single
-replace.configure({
-    quotesFormat : 'double-open-down double-open-up single-open-down single-open-up'
-});
-```
+## Formats
 
-## HTML support
+The input might be in a different format than just a plain text and it might be important to take it into account. For example, you don’t want to apply typography rules inside HTML tag. For that case, you can specify the format preprocessor. There are few already made, and again, you can define your own (see [format documentation](src/formats/readme.md) for more details).
 
-Tipograph is built not to affect any HTML code. So every HTML tag will be exactly the same before and after tranformation. And it also keeps text within `pre` and `code` tags. Hence don't afraid to use Tipograph on your HTML content.
+## Languages
 
-<a name="resources"></a>
+Different languages may have different rules. The most notable example are quotes. There are few predefined languages and you can define your own (see [language documentation](src/languages/readme.md) for more details). The language contains configuration for some presets (at the moment, only *quotes*) and moreover it contains rules specific for the language. Just don’t forget to include *language* preset into *presets* option.
+
+#### chinese
+
+*quotes: 「primary」 | 『secondary』*
+
+#### czech
+
+*quotes: „primary“ | ‚secondary‘*
+
+After some one-letter prepositions and conjuctions there should be a non-breaking space.
+
+#### danish
+
+*quotes: »primary« | „secondary“*
+
+#### english
+
+*quotes: “primary” | ‘secondary’*
+
+#### finnish
+
+*quotes: ”primary” | ’secondary’*
+
+#### french
+
+*quotes: « primary » | “secondary”*
+
+#### german
+
+*quotes: „primary“ | ‚secondary‘*
+
+#### italian
+
+*quotes: «primary» | “secondary”*
+
+#### japanese
+
+*quotes: 「primary」 | 『secondary』*
+
+#### japanese
+
+*quotes: 「primary」 | 『secondary』*
+
+#### polish
+
+*quotes: „primary” | «secondary»*
+
+#### portuguese
+
+*quotes: “primary” | ‘secondary’*
+
+#### russian
+
+*quotes: «primary» | „secondary“*
+
+#### spanish
+
+*quotes: «primary» | “secondary”*
+
+#### swedish
+
+*quotes: ”primary” | ’secondary’*
+
+#### swiss
+
+*quotes: «primary» | ‹secondary›*
+
 ## Resources
 
-* [Practical Typography](http://practicaltypography.com/) for a lot of typography rules. This web is really understandable yet complete.
-* [International variation in quotation marks](http://en.wikipedia.org/wiki/International_variation_in_quotation_marks) for quotes configuration of all languages currently defined
-
-## Todo
-
-* ampersand symbol should be surrounded by non breaking spaces
-* non breaking space between last two words of each paragraph to avoid a final line of text with only one word (?)
-* __allow to pass callback into each method which will be called with "changes" object (useful for showing to user what was changed)__
-* add support for other symbols such as `<-`, `->`, `<->`, `<3`, `x^2`, ...
-* add support for language related non breaking spaces e.g. after prepositions
-
+* [Practical Typography](https://practicaltypography.com/) for the most of the rules in *tipograph*
+* [Summary table](https://en.wikipedia.org/wiki/Quotation_mark#Summary_table) on Wikipedia for quote symbols in various languages
 ## License
 
-Tipograph is MIT licensed. Feel free to use it, contribute or spread the word. Created with love by Petr Nevyhoštěný ([Twitter](https://twitter.com/pnevyk)).
+Tipograph is licensed under [MIT](LICENSE). Feel free to use it, contribute or spread the word.
+

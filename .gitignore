@@ -1,1 +1,5 @@
 node_modules/
+dest/*
+!dest/tipograph.js
+!dest/tipograph.min.js
+!dest/tipograph.min.js.gz

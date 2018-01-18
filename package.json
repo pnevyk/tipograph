@@ -35,12 +35,13 @@
     "scripts": {
         "build": "rollup -c rollup.config.js",
         "build:watch": "rollup -c rollup.config.js --watch",
-        "test": "npm run test:presets; npm run test:languages; npm run test:formats; npm run test:benchmark",
+        "test": "npm run test:presets && npm run test:languages && npm run test:formats && npm run test:benchmark",
         "test:presets": "node -r @std/esm test/presets.js",
         "test:languages": "node -r @std/esm test/languages.js",
         "test:formats": "node -r @std/esm test/formats.js",
         "test:benchmark": "node -r @std/esm test/benchmark.js",
-        "doc": "node scripts/readme.js; node -r @std/esm scripts/rules.js"
+        "doc": "node scripts/readme.js; node -r @std/esm scripts/rules.js",
+        "prepare": "node scripts/prepare-release.js"
     },
     "dependencies": {
         "yargs": "^10.1.1"

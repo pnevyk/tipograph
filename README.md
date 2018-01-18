@@ -114,11 +114,11 @@ There are a lot of special symbols which we don’t know how to write and that m
 
 The input might be in a different format than just a plain text and it might be important to take it into account. For example, you don’t want to apply typography rules inside HTML tag. For that case, you can specify the format preprocessor. There are few already made, and again, you can define your own (see [format documentation](src/formats/readme.md) for more details).
 
-# html
+#### html
 
 HTML tags are kept as they are. Moreover, it also preserves whole contents of the following tags: pre, code, style, script.
 
-# plain
+#### plain
 
 Input content is preserved as it is.
 

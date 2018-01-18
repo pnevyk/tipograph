@@ -40,11 +40,13 @@
 <thead><tr><th>Description</th><th>Input</th><th>Output</th></tr></thead>
 <tbody>
 <tr><td>double straight quotes into curly quotes</td><td>"lorem ipsum"</td><td>“lorem ipsum”</td></tr>
+<tr><td>double straight quotes inside parentheses into curly quotes</td><td>("lorem ipsum")</td><td>(“lorem ipsum”)</td></tr>
 <tr><td>keep double straight quotes if they are not in a pair</td><td>"lorem ipsum</td><td>"lorem ipsum</td></tr>
 <tr><td>keep double straight quotes if they do not represent actual quotes</td><td>" lorem ipsum"</td><td>" lorem ipsum"</td></tr>
 <tr><td>keep double straight quotes if they are not in a pair</td><td>"lorem ipsum</td><td>"lorem ipsum</td></tr>
 <tr><td>multiple double straight quotes into curly quotes</td><td>"lorem" "ipsum"</td><td>“lorem” “ipsum”</td></tr>
 <tr><td>single straight quotes into curly quotes</td><td>'lorem ipsum'</td><td>‘lorem ipsum’</td></tr>
+<tr><td>single straight quotes inside parentheses into curly quotes</td><td>('lorem ipsum')</td><td>(‘lorem ipsum’)</td></tr>
 <tr><td>keep single straight quotes if they are not in a pair</td><td>'lorem ipsum</td><td>'lorem ipsum</td></tr>
 <tr><td>keep single straight quotes if they are not in a pair</td><td>'lorem' ipsum'</td><td>‘lorem’ ipsum'</td></tr>
 <tr><td>keep single straight quotes if they do not represent actual quotes</td><td>' lorem ipsum'</td><td>' lorem ipsum'</td></tr>

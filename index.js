@@ -283,21 +283,21 @@ function quotes (language) {
 
     return [
         // two commas into double open down
-        [/(\s|^),,([^"']+)(\S)(?:"|'')/g, '$1\u201E$2$3' + doubleClose],
+        [/(\s|\(|^),,([^"']+)(\S)(?:"|'')/g, '$1\u201E$2$3' + doubleClose],
         // one comma into single open down in certain cases
-        [/(\s|^),(?!\s)([^']+)(\S)'/g, '$1\u201A$2$3' + singleClose],
+        [/(\s|\(|^),(?!\s)([^']+)(\S)'/g, '$1\u201A$2$3' + singleClose],
         // apostrophe
         [/([a-z])'([a-z])/gi, '$1\u2019$2'],
         // decades
         [/(\s)'(\d{2})/g, '$1\u2019$2'],
+        // double curly quotes
+        [/(\s|\(|^)"(?!\s)([^"]+)(\S)"/g, '$1' + doubleOpen + '$2$3' + doubleClose],
+        // single curly quotes
+        [/(\s|\(|^)'(?!\s)([^']+)(\S)'/g, '$1' + singleOpen + '$2$3' + singleClose],
         // inches
         [/(\d)"/g, '$1\u2033'],
         // feet
-        [/(\d)'/g, '$1\u2032'],
-        // double curly quotes
-        [/(\s|^)"(?!\s)([^"]+)(\S)"/g, '$1' + doubleOpen + '$2$3' + doubleClose],
-        // single curly quotes
-        [/(\s|^)'(?!\s)([^']+)(\S)'/g, '$1' + singleOpen + '$2$3' + singleClose]
+        [/(\d)'/g, '$1\u2032']
     ];
 }
 

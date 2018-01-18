@@ -5,7 +5,7 @@
         "email": "petr.nevyhosteny@gmail.com"
     },
     "description": "A little javascript library and command line tool that makes your written content more typographically correct.",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "homepage": "https://github.com/nevyk/tipograph",
     "contributors": [
         {

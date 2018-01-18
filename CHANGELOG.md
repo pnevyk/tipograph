@@ -1,3 +1,7 @@
+## 0.4.1
+
+* Quotes now work inside parentheses
+
 ## 0.4.0
 
 Complete rewrite. Majority of rules remained the same, however, there are some changes. See the

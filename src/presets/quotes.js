@@ -14,21 +14,21 @@ export default function (language) {
 
     return [
         // two commas into double open down
-        [/(\s|^),,([^"']+)(\S)(?:"|'')/g, '$1\u201E$2$3' + doubleClose],
+        [/(\s|\(|^),,([^"']+)(\S)(?:"|'')/g, '$1\u201E$2$3' + doubleClose],
         // one comma into single open down in certain cases
-        [/(\s|^),(?!\s)([^']+)(\S)'/g, '$1\u201A$2$3' + singleClose],
+        [/(\s|\(|^),(?!\s)([^']+)(\S)'/g, '$1\u201A$2$3' + singleClose],
         // apostrophe
         [/([a-z])'([a-z])/gi, '$1\u2019$2'],
         // decades
         [/(\s)'(\d{2})/g, '$1\u2019$2'],
+        // double curly quotes
+        [/(\s|\(|^)"(?!\s)([^"]+)(\S)"/g, '$1' + doubleOpen + '$2$3' + doubleClose],
+        // single curly quotes
+        [/(\s|\(|^)'(?!\s)([^']+)(\S)'/g, '$1' + singleOpen + '$2$3' + singleClose],
         // inches
         [/(\d)"/g, '$1\u2033'],
         // feet
-        [/(\d)'/g, '$1\u2032'],
-        // double curly quotes
-        [/(\s|^)"(?!\s)([^"]+)(\S)"/g, '$1' + doubleOpen + '$2$3' + doubleClose],
-        // single curly quotes
-        [/(\s|^)'(?!\s)([^']+)(\S)'/g, '$1' + singleOpen + '$2$3' + singleClose]
+        [/(\d)'/g, '$1\u2032']
     ];
 }
 
@@ -43,6 +43,11 @@ export function tests(language) {
             description: 'double straight quotes into curly quotes',
             input: '"lorem ipsum"',
             expected: doubleOpen + 'lorem ipsum' + doubleClose
+        },
+        {
+            description: 'double straight quotes inside parentheses into curly quotes',
+            input: '("lorem ipsum")',
+            expected: '(' + doubleOpen + 'lorem ipsum' + doubleClose + ')'
         },
         {
             description: 'keep double straight quotes if they are not in a pair',
@@ -68,6 +73,11 @@ export function tests(language) {
             description: 'single straight quotes into curly quotes',
             input: '\'lorem ipsum\'',
             expected: singleOpen + 'lorem ipsum' + language.quotes[1][1]
+        },
+        {
+            description: 'single straight quotes inside parentheses into curly quotes',
+            input: '(\'lorem ipsum\')',
+            expected: '(' + singleOpen + 'lorem ipsum' + singleClose + ')'
         },
         {
             description: 'keep single straight quotes if they are not in a pair',

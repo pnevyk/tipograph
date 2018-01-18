@@ -8,11 +8,11 @@ Even if typography can be seen as a set of rules given by some freaks, it’s ac
 
 However, to be typographically correct one has to make some non-trivial effort, be it to learn the rules or to find out how to type all those special characters instead of these present on his keyboard. And therefore *tipograph* comes here to help. It tries its best to fix a text and apply the rules.
 
-It’s impossible to manage all rules out there, because *tipograph* is just a set of simple transformation rules and it doesn’t understand wider linguistic context. And sometimes it will fail. But still, the help deserves to be appreciated. Even when it costs nothing.
+It’s impossible to manage all rules out there, because *tipograph* is just a set of simple transformation rules and it doesn’t understand wider linguistic context. And sometimes it will fail. But still, the help deserves to be appreciated. Especially when it costs nothing.
 
 *In version 0.4.0 there are API breaking changes as it’s a complete rewrite. However, the migration should not be difficult. [Here](https://github.com/pnevyk/tipograph/tree/v0.3.5) is the documentation for the old API.*
 
-*Tipograph is not in stable phase yet. Rules will be added and improved over time. Feel free to make suggestion or ask question you have any.*
+*Tipograph is not in stable phase yet. Rules will be added and improved over time. Feel free to make suggestion or ask question if you have any.*
 
 ## Installation
 
@@ -74,7 +74,7 @@ tipograph -i input.txt -o output.txt
 tipograph --help
 ```
 
-*Note that writing the transformed content into the source file itself results in an empty file. Moreover, you should always check the output if it is correct and make a backup of a source content if you want to write into it back.*
+*Note that writing the transformed content into the source file itself results in an empty file. Moreover, you should always check the output if it’s correct and make a backup of a source content if you want to write into it back.*
 
 ## Presets
 
@@ -82,11 +82,11 @@ There is a number of predefined rules which are grouped into presets. By default
 
 *Rules mentioned here don’t cover all typography rules, just those which are handled by tipograph. Please, read some other resources in order to be able to make your content better.*
 
-*Description here is quite a general overview. You can see a lot of examples how these presets behave [here](rules.md)*
+*Description here is quite a general overview. You can see a lot of examples how these presets behave [here](rules.md).*
 
 #### hyphens
 
-Hyphens are present on our keyboards and are used mostly to separatare multipart words ("cost-effective") or multiword phrases which need to be together ("high-school grades"). Dashes come in two sizes: en dash and em dash. En dash is used instead of hyphen in number ranges ("1–5″), or if two consecutive hyphens are found. Em dashed is used as a break in sentence ("tipograph — even if it’s just a set of simple rules — can improve typography in your content"), or if three consecutive hyphens are found.
+Hyphens are present on our keyboards and are used mostly to separatare multipart words (“cost-effective”) or multiword phrases which need to be together (“high-school grades”). Dashes come in two sizes: en dash and em dash. En dash is used instead of hyphen in number ranges (“1–5”), or if two consecutive hyphens are found. Em dashed is used as a break in sentence (“tipograph — even if it’s just a set of simple rules — can improve typography in your content”), or if three consecutive hyphens are found.
 
 *Type of dash used as break in sentence might be dependent on language habits in the future.*
 

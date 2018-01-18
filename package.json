@@ -1,44 +1,57 @@
 {
-  "name": "tipograph",
-  "author": {
-    "name": "Petr Nevyhoštěný",
-    "email": "petr.nevyhosteny@gmail.com"
-  },
-  "description": "Library which transforms your text input into typographically correct sequence of characters.",
-  "version": "0.3.5",
-  "homepage": "https://github.com/nevyk/tipograph",
-  "contributors": [
-    {
-      "name": "Petr Nevyhoštěný",
-      "email": "petr.nevyhosteny@gmail.com"
-    }
-  ],
-  "keywords": [
-    "tipograph",
-    "typography",
-    "type",
-    "converter",
-    "curly",
-    "quotes",
-    "dash"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nevyk/tipograph"
-  },
-  "license": "MIT",
-  "bugs": "https://github.com/nevyk/tipograph/issues",
-  "main": "./index",
-  "engines": {
-    "node": "*"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "gulp": "^3.5.5",
-    "gulp-uglify": "^0.2.1",
-    "gulp-jshint": "^1.5.0",
-    "gulp-mocha": "^0.4.1",
-    "expect.js": "^0.3.1",
-    "gulp-header": "^1.0.2"
-  }
+    "name": "tipograph",
+    "author": {
+        "name": "Petr Nevyhoštěný",
+        "email": "petr.nevyhosteny@gmail.com"
+    },
+    "description": "A little javascript library and command line tool that makes your written content more typographically correct.",
+    "version": "0.3.5",
+    "homepage": "https://github.com/nevyk/tipograph",
+    "contributors": [
+        {
+            "name": "Petr Nevyhoštěný",
+            "email": "petr.nevyhosteny@gmail.com"
+        }
+    ],
+    "keywords": [
+        "tipograph",
+        "typography",
+        "type",
+        "converter",
+        "curly",
+        "quotes",
+        "dash"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nevyk/tipograph"
+    },
+    "license": "MIT",
+    "bugs": "https://github.com/nevyk/tipograph/issues",
+    "main": "./index",
+    "bin": {
+        "tipograph": "cli.js"
+    },
+    "scripts": {
+        "build": "rollup -c rollup.config.js",
+        "build:watch": "rollup -c rollup.config.js --watch",
+        "test": "npm run test:presets; npm run test:languages; npm run test:formats; npm run test:benchmark",
+        "test:presets": "node -r @std/esm test/presets.js",
+        "test:languages": "node -r @std/esm test/languages.js",
+        "test:formats": "node -r @std/esm test/formats.js",
+        "test:benchmark": "node -r @std/esm test/benchmark.js",
+        "doc": "node scripts/readme.js; node -r @std/esm scripts/rules.js"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@std/esm": "^0.19.3",
+        "chalk": "^2.3.0",
+        "rollup": "^0.54.0",
+        "rollup-plugin-eslint": "^4.0.0",
+        "rollup-plugin-gzip": "^1.3.0",
+        "rollup-plugin-license": "^0.5.0",
+        "rollup-plugin-uglify": "^2.0.1",
+        "yargs": "^10.1.1"
+    },
+    "@std/esm": "cjs"
 }

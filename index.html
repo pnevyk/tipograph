@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Try tipograph</title>
+        <link rel="stylesheet" href="https://unpkg.com/hydrogen-css/dist/hydrogen.min.css"/>
+        <style media="screen">
+            body {
+                background-color: #dbcb90;
+                color: #3c3a36;
+            }
+
+            a {
+                color: #a03a38;
+            }
+
+            .page {
+                margin-top: 16px;
+                width: 1000px;
+            }
+
+            .center-block {
+                position: relative;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #input, #output {
+                font-family: serif;
+                font-size: 16px;
+                line-height: 1.5;
+                border: solid 1px #807659;
+                width: 95%;
+                height: 400px;
+                padding: 8px;
+            }
+
+            #input {
+                background-color: #ffffff;
+                resize: none;
+            }
+
+            #output {
+                background-color: #3c3a36;
+                color: #ffffff;
+                margin: 0;
+                white-space: pre-wrap;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page center-block">
+            <div class="center-block h-text-center">
+                <h1><a href="https://github.com/pnevyk/tipograph" target="_blank">tipograph</a> demo</h1>
+
+                <p>
+                    <strong>Write something and see the result</strong>
+                </p>
+            </div>
+
+            <div class="h-g">
+                <div class="h-u h-u-6-12" class="center-block">
+                    <textarea id="input"></textarea>
+                </div>
+                <div class="h-u h-u-6-12" class="center-block">
+                    <div id="output"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="dest/tipograph.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            var typo = tipograph();
+            var input = document.getElementById('input');
+            var output = document.getElementById('output');
+
+            output.textContent = typo(input.value);
+            input.addEventListener('input', function (e) {
+                output.textContent = typo(e.target.value);
+            });
+        </script>
+    </body>
+</html>

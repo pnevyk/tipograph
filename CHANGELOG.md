@@ -1,3 +1,19 @@
+## 0.4.0
+
+Complete rewrite. Majority of rules remained the same, however, there are some changes. See the
+[commit](https://github.com/pnevyk/tipograph/commit/bfaf8e380cc5ecc5e569f0e190c873aca8d2645d) for the whole picture of
+the change. Tipograph has now CLI interface and demo web page.
+
+* Quotes now take spaces into account so the transformation is not so aggressive
+* Sentence breaks using hyphens are now replaced with em dash instead of en dash
+* Letter range rule was removed
+* Em dashes are now surrounded by hair spaces
+* `<>` is not replaced with inequality sign anymore
+* `*` can be now replaced with multiplication sign
+* Rules for arrows were added
+
+***
+
 ## 0.3.5
 
 Handle apostrophe before two-digit years

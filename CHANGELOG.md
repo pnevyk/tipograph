@@ -1,3 +1,7 @@
+## 0.4.3
+
+Command line interface fix (change in npm package packing).
+
 ## 0.4.2
 
 * Question and exclamation marks combinations are changed into ligature counterparts

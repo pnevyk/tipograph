@@ -18,7 +18,7 @@ export default [{
 }, {
     input: 'src/tipograph.js',
     output: {
-        file: 'dest/tipograph.js',
+        file: 'dist/tipograph.js',
         format: 'iife',
         name: 'tipograph'
     },
@@ -31,7 +31,7 @@ export default [{
 }, {
     input: 'src/tipograph.js',
     output: {
-        file: 'dest/tipograph.min.js',
+        file: 'dist/tipograph.min.js',
         format: 'iife',
         name: 'tipograph'
     },

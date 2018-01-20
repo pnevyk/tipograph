@@ -10,7 +10,7 @@ if (version === pkg.version) {
     exit(1);
 }
 
-if (exec('cat CHANGELOG.md').toString().indexOf('## ' + version) === -1) {
+if (exec('cat CHANGELOG.md').toString().indexOf('## ' + pkg.version) === -1) {
     echo('write changes into changelog');
     exit(1);
 }
@@ -19,7 +19,7 @@ echo(version + ' -> ' + pkg.version);
 execAndExitOnFail('npm run test', 'tests failed');
 execAndExitOnFail('npm run build', 'build failed');
 exec('npm run doc');
-exec('git add package.json dest index.js CHANGELOG.md README.md rules.md');
+exec('git add package.json CHANGELOG.md README.md rules.md');
 echo('if everything is correct, run these commands:');
 echo('    git commit -m "Release v' + pkg.version + '"');
 echo('    git tag -a v' + pkg.version + ' -m "Release v' + pkg.version + '"');

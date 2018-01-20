@@ -1,2 +1,2 @@
-test/benchmarks/* -text
+test/benchmarks/* binary
 test/benchmarks/index.js text

@@ -2,7 +2,8 @@
 ///
 /// There are a lot of special symbols which we don't know how to write and that makes us sad. Instead, we tend to use
 /// some substitues for them. And *tipograph* replaces these substitues with their actual characters, for example
-/// copyright or trademark symbols.
+/// copyright or trademark symbols. It also change "??", "?!" and "!?" into ligature counterparts. Also, multiple
+/// question marks (more than two) or exclamation points (more than one) are squashed.
 
 export default function () {
     return [
@@ -16,7 +17,12 @@ export default function () {
         [/([^.]|^)\.\.\.([^.]|$)/g, '$1\u2026$2'],
         // arrows
         [/<-/g, '\u2190'],
-        [/->/g, '\u2192']
+        [/->/g, '\u2192'],
+        // question/exclamation marks
+        [/\?!+/g, '\u2048'],
+        [/!\?+/g, '\u2049'],
+        [/\?{2,}/g, '\u2047'],
+        [/!{2,}/g, '!'],
     ];
 }
 
@@ -46,6 +52,41 @@ export function tests() {
             description: 'arrows',
             input: '<- ->',
             expected: '\u2190 \u2192'
+        },
+        {
+            description: 'double question mark',
+            input: '??',
+            expected: '\u2047'
+        },
+        {
+            description: 'question exclamation mark',
+            input: '?!',
+            expected: '\u2048'
+        },
+        {
+            description: 'exclamation question mark',
+            input: '!?',
+            expected: '\u2049'
+        },
+        {
+            description: 'multiple question marks',
+            input: '??? ????',
+            expected: '\u2047 \u2047'
+        },
+        {
+            description: 'multiple exclamation marks',
+            input: '!! !!!!',
+            expected: '! !'
+        },
+        {
+            description: 'question exclamation mark with multiple exclamation marks',
+            input: '?!! ?!!!',
+            expected: '\u2048 \u2048'
+        },
+        {
+            description: 'exclamation question mark with multiple question marks',
+            input: '!?? !???',
+            expected: '\u2049 \u2049'
         }
     ];
 }

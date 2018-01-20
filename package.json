@@ -30,6 +30,7 @@
     "bugs": "https://github.com/nevyk/tipograph/issues",
     "main": "./index",
     "files": [
+        "src",
         "dist",
         "index.js",
         "cli.js",

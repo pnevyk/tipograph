@@ -1,3 +1,7 @@
+## 0.4.2
+
+* Question and exclamation marks combinations are changed into ligature counterparts
+
 ## 0.4.1
 
 * Quotes now work inside parentheses

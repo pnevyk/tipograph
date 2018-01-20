@@ -29,7 +29,7 @@ npm install --global tipograph
 **In brower**
 
 ```html
-<script type="text/javascript" src="dest/tipograph.min.js"></script>
+<script type="text/javascript" src="https://github.com/pnevyk/tipograph"></script>
 ```
 
 ## Usage
@@ -108,7 +108,7 @@ Even that they are not visible, spaces play important role in typography. Only o
 
 #### symbols
 
-There are a lot of special symbols which we don’t know how to write and that makes us sad. Instead, we tend to use some substitues for them. And *tipograph* replaces these substitues with their actual characters, for example copyright or trademark symbols.
+There are a lot of special symbols which we don’t know how to write and that makes us sad. Instead, we tend to use some substitues for them. And *tipograph* replaces these substitues with their actual characters, for example copyright or trademark symbols. It also change “⁇”, “⁈” and “⁉” into ligature counterparts. Also, multiple question marks (more than two) or exclamation points (more than one) are squashed.
 
 ## Formats
 

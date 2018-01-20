@@ -87,6 +87,13 @@
 <tr><td>registered trademark</td><td>(r)(r) (R)(R) </td><td>®<span style="font-size: 75%; opacity: 0.5">⍽</span>®<span style="font-size: 75%; opacity: 0.5">⍽</span>®<span style="font-size: 75%; opacity: 0.5">⍽</span>®<span style="font-size: 75%; opacity: 0.5">⍽</span></td></tr>
 <tr><td>ellipsis</td><td>... a...z .... ......</td><td>… a…z .... ......</td></tr>
 <tr><td>arrows</td><td><- -></td><td>← →</td></tr>
+<tr><td>double question mark</td><td>??</td><td>⁇</td></tr>
+<tr><td>question exclamation mark</td><td>?!</td><td>⁈</td></tr>
+<tr><td>exclamation question mark</td><td>!?</td><td>⁉</td></tr>
+<tr><td>multiple question marks</td><td>??? ????</td><td>⁇ ⁇</td></tr>
+<tr><td>multiple exclamation marks</td><td>!! !!!!</td><td>! !</td></tr>
+<tr><td>question exclamation mark with multiple exclamation marks</td><td>?!! ?!!!</td><td>⁈ ⁈</td></tr>
+<tr><td>exclamation question mark with multiple question marks</td><td>!?? !???</td><td>⁉ ⁉</td></tr>
 </tbody>
 </table>
 

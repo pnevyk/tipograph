@@ -2,7 +2,7 @@
 ///
 /// There are a lot of special symbols which we don't know how to write and that makes us sad. Instead, we tend to use
 /// some substitues for them. And *tipograph* replaces these substitues with their actual characters, for example
-/// copyright or trademark symbols. It also change "??", "?!" and "!?" into ligature counterparts. Also, multiple
+/// copyright or trademark symbols. It also changes "??", "?!" and "!?" into ligature counterparts. Also, multiple
 /// question marks (more than two) or exclamation points (more than one) are squashed.
 
 export default function () {

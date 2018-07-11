@@ -59,7 +59,7 @@ function getPresets(option, language) {
                 throw new Error(
                     'Unsupported preset: ' + preset + '. Choose one from ' + Object.keys(presets).join(', ') + '.'
                 );
-            } else if (Array.isArray(preset)) {
+            } else if (typeof preset === 'function') {
                 return preset(language);
             } else {
                 return presets[preset](language);

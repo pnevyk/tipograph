@@ -113,3 +113,15 @@ export default function tipograph(options) {
         });
     };
 }
+
+tipograph.presets = function (extensions) {
+    var names = Object.keys(presets);
+
+    if (Array.isArray(extensions)) {
+        return names.concat(extensions);
+    } else if (typeof extensions !== 'undefined') {
+        throw new Error('Presets can be extended only with an array of custom presets');
+    } else {
+        return names;
+    }
+};

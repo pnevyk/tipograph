@@ -44,26 +44,25 @@
         "build": "rollup -c rollup.config.js",
         "build:watch": "rollup -c rollup.config.js --watch",
         "test": "npm run test:presets && npm run test:languages && npm run test:formats && npm run test:benchmark",
-        "test:presets": "node -r @std/esm test/presets.js",
-        "test:languages": "node -r @std/esm test/languages.js",
-        "test:formats": "node -r @std/esm test/formats.js",
-        "test:benchmark": "node -r @std/esm test/benchmark.js",
-        "doc": "node scripts/readme.js; node -r @std/esm scripts/rules.js",
+        "test:presets": "node -r esm test/presets.js",
+        "test:languages": "node -r esm test/languages.js",
+        "test:formats": "node -r esm test/formats.js",
+        "test:benchmark": "node -r esm test/benchmark.js",
+        "doc": "node scripts/readme.js; node -r esm scripts/rules.js",
         "prepare-release": "node scripts/prepare-release.js",
         "prepare": "npm run build"
     },
     "dependencies": {
-        "yargs": "^10.1.1"
+        "yargs": "^12.0.1"
     },
     "devDependencies": {
-        "@std/esm": "^0.19.3",
-        "chalk": "^2.3.0",
-        "rollup": "^0.54.0",
+        "chalk": "^2.4.1",
+        "esm": "^3.0.66",
+        "rollup": "^0.61.1",
         "rollup-plugin-eslint": "^4.0.0",
-        "rollup-plugin-gzip": "^1.3.0",
-        "rollup-plugin-license": "^0.5.0",
-        "rollup-plugin-uglify": "^2.0.1"
+        "rollup-plugin-gzip": "^1.4.0",
+        "rollup-plugin-license": "^0.6.0",
+        "rollup-plugin-uglify": "^4.0.0"
     },
-    "@std/esm": "cjs",
     "unpkg": "dist/tipograph.min.js"
 }

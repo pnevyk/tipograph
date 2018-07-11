@@ -10,7 +10,7 @@ However, to be typographically correct one has to make some non-trivial effort, 
 
 It’s impossible to manage all rules out there, because *tipograph* is just a set of simple transformation rules and it doesn’t understand wider linguistic context. And sometimes it will fail. But still, the help deserves to be appreciated. Especially when it costs nothing.
 
-*In version 0.4.0 there are API breaking changes as it’s a complete rewrite. However, the migration should not be difficult. [Here](https://github.com/pnevyk/tipograph/tree/v0.3.5) is the documentation for the old API.*
+*In version 0.4.0 there are API breaking changes as it’s a complete rewrite. However, the migration should not be difficult (see the [guide](03to04.md)). If you are interested, [here](https://github.com/pnevyk/tipograph/tree/v0.3.5) is the documentation for the old API.*
 
 *Tipograph is not in stable phase yet. Rules will be added and improved over time. Feel free to make suggestion or ask question if you have any.*
 
@@ -109,6 +109,25 @@ Even that they are not visible, spaces play important role in typography. Only o
 #### symbols
 
 There are a lot of special symbols which we don’t know how to write and that makes us sad. Instead, we tend to use some substitues for them. And *tipograph* replaces these substitues with their actual characters, for example copyright or trademark symbols. It also changes “⁇”, “⁈” and “⁉” into ligature counterparts. Also, multiple question marks (more than two) or exclamation points (more than one) are squashed.
+
+#### custom
+
+If *tipograph*'s rules are not enough for you, you can define your own. Please, consider if your rule would make sense in tipograph core, and if so, I will gladly accept your contribution.
+
+```js
+var custom = function (language) {
+    // set of rules
+    return [
+        // rule is a pair of search value and its replacement
+        [/-([a-z])/g, function (match, letter) {
+            return letter.toUpperCase();
+        }]
+    ];
+};
+
+var typo1 = tipograph({ presets: [custom] });                    // use only your custom preset
+var typo2 = tipograph({ presets: tipograph.presets([custom]) }); // or extend the default presets
+```
 
 ## Formats
 

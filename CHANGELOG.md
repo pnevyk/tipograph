@@ -1,3 +1,8 @@
+## 0.4.4
+
+* Custom rules fix
+* Helper function for getting and extending default presets
+
 ## 0.4.3
 
 Command line interface fix (change in npm package packing).

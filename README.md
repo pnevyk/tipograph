@@ -14,6 +14,10 @@ It’s impossible to manage all rules out there, because *tipograph* is just a s
 
 *Tipograph is not in stable phase yet. Rules will be added and improved over time. Feel free to make suggestion or ask question if you have any.*
 
+## Demo
+
+You can see what *tipograph* help you with [here](http://pnevyk.github.io/tipograph/).
+
 ## Installation
 
 **In node**

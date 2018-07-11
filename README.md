@@ -26,7 +26,7 @@ npm install --save tipograph
 npm install --global tipograph
 ```
 
-**In brower**
+**In browser**
 
 ```html
 <script type="text/javascript" src="https://unpkg.com/tipograph"></script>

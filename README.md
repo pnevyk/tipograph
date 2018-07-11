@@ -116,7 +116,7 @@ There are a lot of special symbols which we don’t know how to write and that m
 
 #### custom
 
-If *tipograph*'s rules are not enough for you, you can define your own. Please, consider if your rule would make sense in tipograph core, and if so, I will gladly accept your contribution.
+If *tipograph*'s rules are not enough for you, you can define your own. Please, consider whether your rule would make sense in *tipograph* core, and if so, I will gladly accept your contribution.
 
 ```js
 var custom = function (language) {

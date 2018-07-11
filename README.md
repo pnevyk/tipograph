@@ -215,6 +215,10 @@ After some one-letter prepositions and conjuctions there should be a non-breakin
 
 * [Practical Typography](https://practicaltypography.com/) for the most of the rules in *tipograph*
 * [Summary table](https://en.wikipedia.org/wiki/Quotation_mark#Summary_table) on Wikipedia for quote symbols in various languages
+## Contributing
+
+See [contributing guide](CONTRIBUTING.md).
+
 ## License
 
 Tipograph is licensed under [MIT](LICENSE). Feel free to use it, contribute or spread the word.

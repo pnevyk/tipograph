@@ -1,3 +1,7 @@
+## 0.4.5
+
+* Czech language prepositions rule fix
+
 ## 0.4.4
 
 * Custom rules fix

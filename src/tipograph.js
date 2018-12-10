@@ -2,6 +2,8 @@ import * as formats from './formats/index';
 import * as languages from './languages/index';
 import * as presets from './presets/index';
 
+import { find } from './changes';
+
 var defaultOptions = {
     format: 'plain',
     language: 'english',
@@ -77,24 +79,24 @@ export default function tipograph(options) {
     var language = getLanguage(options.language);
     var pipeline = getPresets(options.presets, language);
 
-    return function (input) {
+    return function (input, callback) {
         if (typeof input !== 'string') {
             throw new Error('Only strings are supported as input.');
         }
 
         // preprocess input
-        input = format(input);
+        var processed = format(input);
 
         var tokens = [];
         var content = '';
 
         // concatenate tokens but replace each formatting token with a placeholder
-        for (var i = 0; i < input.length; i++) {
-            if (input[i].transform) {
-                content += input[i].content;
+        for (var i = 0; i < processed.length; i++) {
+            if (processed[i].transform) {
+                content += processed[i].content;
             } else {
                 content += '<tipograph[' + tokens.length + ']>';
-                tokens.push(input[i].content);
+                tokens.push(processed[i].content);
             }
         }
 
@@ -108,9 +110,16 @@ export default function tipograph(options) {
         }
 
         // replace placeholders with their original content
-        return content.replace(/<tipograph\[(\d+)\]>/g, function (match, index) {
+        content = content.replace(/<tipograph\[(\d+)\]>/g, function (match, index) {
             return tokens[index];
         });
+
+        if (typeof callback === 'function') {
+            var changes = find(input, content);
+            return callback(content, changes);
+        } else {
+            return content;
+        }
     };
 }
 

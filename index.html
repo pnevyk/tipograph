@@ -60,7 +60,7 @@
 
             <div class="h-g">
                 <div class="h-u h-u-6-12" class="center-block">
-                    <textarea id="input">"When you ig­nore ty­pog­ra­phy, you’re ig­nor­ing an op­por­tu­nity to im­prove the ef­fec­tive­ness of your writing." - Matthew Butterick</textarea>
+                    <textarea id="input">"When you ig­nore ty­pog­ra­phy, you're ig­nor­ing an op­por­tu­nity to im­prove the ef­fec­tive­ness of your writing." - Matthew Butterick</textarea>
                 </div>
                 <div class="h-u h-u-6-12" class="center-block">
                     <div id="output"></div>
@@ -74,9 +74,25 @@
             var input = document.getElementById('input');
             var output = document.getElementById('output');
 
-            output.textContent = typo(input.value);
+            function highlight(converted, changes) {
+                var highlighted = '';
+                var last = 0;
+
+                for (var i = 0; i < changes.length; i++) {
+                    highlighted += converted.slice(last, changes[i][1][0]);
+                    highlighted += '<span style="background-color: #a03a38;">';
+                    highlighted += converted.slice(changes[i][1][0], changes[i][1][1]);
+                    highlighted += '</span>';
+                    last = changes[i][1][1];
+                }
+
+                highlighted += converted.slice(last);
+                return highlighted;
+            }
+
+            output.innerHTML = typo(input.value, highlight);
             input.addEventListener('input', function (e) {
-                output.textContent = typo(e.target.value);
+                output.innerHTML = typo(e.target.value, highlight);
             });
         </script>
     </body>

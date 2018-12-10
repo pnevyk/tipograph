@@ -43,10 +43,11 @@
     "scripts": {
         "build": "rollup -c rollup.config.js",
         "build:watch": "rollup -c rollup.config.js --watch",
-        "test": "npm run test:presets && npm run test:languages && npm run test:formats && npm run test:benchmark",
+        "test": "npm run test:presets && npm run test:languages && npm run test:formats && npm run test:changes && npm run test:benchmark",
         "test:presets": "node -r esm test/presets.js",
         "test:languages": "node -r esm test/languages.js",
         "test:formats": "node -r esm test/formats.js",
+        "test:changes": "node -r esm test/changes.js",
         "test:benchmark": "node -r esm test/benchmark.js",
         "doc": "node scripts/readme.js; node -r esm scripts/rules.js",
         "prepare-release": "node scripts/prepare-release.js",

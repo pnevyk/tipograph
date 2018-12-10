@@ -4,15 +4,21 @@ import util from 'util';
 import tipograph from './tipograph';
 
 util.inherits(TipographStream, Transform);
-function TipographStream(options) {
+function TipographStream(options, callback) {
     if (!(this instanceof TipographStream)) {
-        return new TipographStream(options);
+        return new TipographStream(options, callback);
     }
 
     Transform.call(this);
 
     this._data = '';
-    this._typo = tipograph(options);
+    if (typeof options === 'function') {
+        this._typo = tipograph();
+        this._callback = options;
+    } else {
+        this._typo = tipograph(options);
+        this._callback = callback;
+    }
 }
 
 TipographStream.prototype._transform = function (chunk, enc, done) {
@@ -21,7 +27,7 @@ TipographStream.prototype._transform = function (chunk, enc, done) {
 };
 
 TipographStream.prototype._flush = function (done) {
-    this.push(new Buffer(this._typo(this._data)));
+    this.push(new Buffer(this._typo(this._data, this._callback)));
     done();
 };
 

@@ -19,7 +19,7 @@ echo(version + ' -> ' + pkg.version);
 execAndExitOnFail('npm run test', 'tests failed');
 execAndExitOnFail('npm run build', 'build failed');
 exec('npm run doc');
-exec('git add package.json CHANGELOG.md README.md rules.md');
+exec('git add package.json package-lock.json CHANGELOG.md README.md rules.md');
 echo('if everything is correct, run these commands:');
 echo('    git commit -m "Release v' + pkg.version + '"');
 echo('    git tag -a v' + pkg.version + ' -m "Release v' + pkg.version + '"');

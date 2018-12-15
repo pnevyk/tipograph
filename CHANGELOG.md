@@ -1,3 +1,9 @@
+## 0.5.0
+
+* Changes retrieval for more complex use cases
+* Postprocessing for HTML and LaTeX output formats
+* Fix of deprecation of `new Buffer()` in stream
+
 ## 0.4.5
 
 * Czech language prepositions rule fix

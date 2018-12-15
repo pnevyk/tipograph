@@ -27,7 +27,7 @@ TipographStream.prototype._transform = function (chunk, enc, done) {
 };
 
 TipographStream.prototype._flush = function (done) {
-    this.push(new Buffer(this._typo(this._data, this._callback)));
+    this.push(Buffer.from(this._typo(this._data, this._callback)));
     done();
 };
 

@@ -49,7 +49,8 @@ var typo1 = tipograph();
 var typo2 = tipograph({
     format: 'html',
     language: 'czech',
-    presets: ['quotes', 'language']
+    presets: ['quotes', 'language'],
+    post: 'latex',
 });
 
 typo2('"Ahoj <b>světe</b>!"') // „Ahoj <b>světe</b>!“
@@ -144,6 +145,18 @@ HTML tags are kept as they are. Moreover, it also preserves whole contents of th
 #### plain
 
 Input content is preserved as it is.
+
+## Postprocessing
+
+Sometimes the special characters need to be replaced with their corresponding macros/entities in an output format, so that the file can be saved as ascii-encoded file or the compiler/interpreter of the format (and the human too) understands it.
+
+#### html
+
+Special characters are replaced with corresponding HTML entities (in form &entity;).
+
+#### latex
+
+Special characters are replaced with corresponding LaTeX macros, sometimes wrapped in inline math block.
 
 ## Changes
 

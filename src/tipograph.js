@@ -1,6 +1,7 @@
 import * as formats from './formats/index';
 import * as languages from './languages/index';
 import * as presets from './presets/index';
+import * as post from './post/index';
 
 import { find } from './changes';
 
@@ -72,12 +73,28 @@ function getPresets(option, language) {
     }
 }
 
+function getPost(option) {
+    if (typeof post[option] !== 'undefined') {
+        return post[option];
+    } else if (typeof option === 'undefined') {
+        return null;
+    } else if (typeof option === 'string') {
+        throw new Error(
+            'Unsupported postprocessing format: ' + option + '. Choose one from ' +
+            Object.keys(post).join(', ') + ' or pass a object.'
+        );
+    } else {
+        throw new Error('Post option must be string corresponding to an available postprocessing format.');
+    }
+}
+
 export default function tipograph(options) {
     options = Object.assign({}, defaultOptions, options);
 
     var format = getFormat(options.format);
     var language = getLanguage(options.language);
     var pipeline = getPresets(options.presets, language);
+    var postMap = getPost(options.post);
 
     return function (input, callback) {
         if (typeof input !== 'string') {
@@ -113,6 +130,18 @@ export default function tipograph(options) {
         content = content.replace(/<tipograph\[(\d+)\]>/g, function (match, index) {
             return tokens[index];
         });
+
+        if (postMap !== null) {
+            var postprocessed = '';
+            for (var j = 0; j < content.length; j++) {
+                if (typeof postMap[content[j]] === 'string') {
+                    postprocessed += postMap[content[j]];
+                } else {
+                    postprocessed += content[j];
+                }
+            }
+            content = postprocessed;
+        }
 
         if (typeof callback === 'function') {
             var changes = find(input, content);

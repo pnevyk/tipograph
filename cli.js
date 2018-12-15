@@ -10,6 +10,7 @@ var tipograph = require('./index');
 var presets = listOf('presets');
 var formats = listOf('formats');
 var languages = listOf('languages');
+var post = listOf('post');
 
 var args = yargs
     .option('input', {
@@ -40,6 +41,11 @@ var args = yargs
         choices: languages,
         type: 'string'
     })
+    .option('post', {
+        describe: 'Postprocessing format.',
+        choices: post,
+        type: 'string',
+    })
     .version(require('./package.json').version)
     .wrap(yargs.terminalWidth())
     .argv;
@@ -49,7 +55,8 @@ var output = typeof args.output === 'undefined' ? process.stdout : fs.createWrit
 var typo = tipograph.createStream({
     presets: typeof args.presets === 'undefined' ? presets : args.presets,
     format: typeof args.format === 'undefined' ? 'plain' : args.format,
-    language: typeof args.language === 'undefined' ? 'english' : args.language
+    language: typeof args.language === 'undefined' ? 'english' : args.language,
+    post: args.post,
 });
 
 input.on('error', function (error) {

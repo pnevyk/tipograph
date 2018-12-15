@@ -59,10 +59,12 @@ function insertSections(content) {
         var index = description.indexOf(result[0]) + result[0].length;
         return description.slice(0, index) + '\n\n' + quotes + description.slice(index);
     });
+    var post = readSectionDescription('post');
 
     content = content.replace(pattern('presets'), presets);
     content = content.replace(pattern('formats'), formats);
     content = content.replace(pattern('languages'), languages);
+    content = content.replace(pattern('post'), post);
 
     return content;
 }

@@ -1,3 +1,8 @@
+## 0.5.1
+
+* Fix support for custom language
+* Export quotes and languages properties
+
 ## 0.5.0
 
 * Changes retrieval for more complex use cases

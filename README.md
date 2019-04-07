@@ -53,7 +53,7 @@ var typo2 = tipograph({
     post: 'latex',
 });
 
-typo2('"Ahoj <b>světe</b>!"') // „Ahoj <b>světe</b>!“
+typo2('"Ahoj <b style="color: red;">světe</b>!"') // „Ahoj <b style="color: red;">světe</b>!“
 
 // stream support (only in node)
 var fs = require('fs');
@@ -130,8 +130,8 @@ var custom = function (language) {
     ];
 };
 
-var typo1 = tipograph({ presets: [custom] });                    // use only your custom preset
-var typo2 = tipograph({ presets: tipograph.presets([custom]) }); // or extend the default presets
+var typo1 = tipograph({ presets: [custom] });                   // use only your custom preset
+var typo2 = tipograph({ presets: tipograph.extend([custom]) }); // or extend the default presets
 ```
 
 ## Formats
@@ -255,6 +255,26 @@ After some one-letter prepositions and conjuctions there should be a non-breakin
 #### swiss
 
 *quotes: «primary» | ‹secondary›*
+
+#### custom
+
+If you need a language which is not included in *tipograph* core or you need to make specific changes to a built-in language, you can do so by passing the language object instead of a name. The same as in custom preset case, consider contributing your language to *tipograph* itself.
+
+```js
+var typo = tipograph({
+    language: {
+        quotes: [
+            // french quotes (see src/quotes.js)
+            [tipograph.quotes.DOUBLE_LEFT_SPACE, tipograph.quotes.DOUBLE_RIGHT_SPACE],
+            [tipograph.quotes.SINGLE_LEFT_SPACE, tipograph.quotes.SINGLE_RIGHT_SPACE]
+        ],
+        // same interface as in custom preset
+        rules: []
+    }
+});
+```
+
+If you want to reuse either quotes or rules definition of an existing language, it is possible using exported `languages` property, that is, using `tipograph.languages.french.quotes` and `tipograph.languages.french.rules`.
 
 ## Resources
 

@@ -99,8 +99,5 @@ export function find(original, converted) {
         }
     }
 
-    // remove the artificial '\0' from the end
-    converted = converted.slice(0, -1);
-
     return changes;
 }

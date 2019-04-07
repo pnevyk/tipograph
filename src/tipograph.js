@@ -3,6 +3,8 @@ import * as languages from './languages/index';
 import * as presets from './presets/index';
 import * as post from './post/index';
 
+import * as quotes from './quotes';
+
 import { find } from './changes';
 
 var defaultOptions = {
@@ -43,8 +45,8 @@ function getLanguage(option) {
             option.quotes = languages['english'].quotes;
         }
 
-        if (typeof option.custom === 'undefined') {
-            option.custom = languages['english'].custom;
+        if (typeof option.rules === 'undefined') {
+            option.rules = languages['english'].rules;
         }
 
         // TODO: check correct option interface
@@ -152,7 +154,7 @@ export default function tipograph(options) {
     };
 }
 
-tipograph.presets = function (extensions) {
+tipograph.extend = function (extensions) {
     var names = Object.keys(presets);
 
     if (Array.isArray(extensions)) {
@@ -163,3 +165,10 @@ tipograph.presets = function (extensions) {
         return names;
     }
 };
+
+// deprecated
+tipograph.presets = tipograph.extend;
+
+// export some internals
+tipograph.quotes = quotes;
+tipograph.languages = languages;

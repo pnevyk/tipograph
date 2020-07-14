@@ -6,6 +6,7 @@ import * as quotes from '../quotes';
 
 export default {
     quotes: [[quotes.DOUBLE_OPEN_DOWN, quotes.DOUBLE_OPEN_UP], [quotes.SINGLE_OPEN_DOWN, quotes.SINGLE_OPEN_UP]],
+    dash: 'en',
     rules: [
         // non-breaking space after one-letter prepositions and conjuctions
         [/(\s|^)([KkSsVvZzOoUuAI])(?:\s+)(\S)/g, '$1$2\u00A0$3']

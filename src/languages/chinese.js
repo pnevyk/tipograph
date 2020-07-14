@@ -7,6 +7,7 @@ export default {
         [quotes.DOUBLE_TOP_CORNER, quotes.DOUBLE_BOTTOM_CORNER],
         [quotes.SINGLE_TOP_CORNER, quotes.SINGLE_BOTTOM_CORNER]
     ],
+    dash: 'en',
     rules: []
 };
 

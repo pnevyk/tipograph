@@ -1,29 +1,47 @@
 /// #### hyphens
 ///
-/// Hyphens are present on our keyboards and are used mostly to separatare multipart words ("cost-effective") or
+/// Hyphens are present on our keyboards and are used mostly to separate multipart words ("cost-effective") or
 /// multiword phrases which need to be together ("high-school grades"). Dashes come in two sizes: en dash and em dash.
-/// En dash is used instead of hyphen in number ranges ("1-5"), or if two consecutive hyphens are found. Em dashed is
-/// used as a break in sentence ("tipograph - even if it's just a set of simple rules - can improve typography in your
-/// content"), or if three consecutive hyphens are found.
-///
-/// *Type of dash used as break in sentence might be dependent on language habits in the future.*
+/// En dash is used instead of hyphen in number ranges ("1-5"), or when two consecutive hyphens are found. Em dash is
+/// use when three consecutive hyphens are found. Both can be used as a break in a sentence ("tipograph - even if it's
+/// just a set of simple rules - can improve typography in your content"). Whether en dash or em dash will be used for
+/// this case depends on the setting of the language.
 
-export default function () {
+export default function (language) {
+    var enRule = [/\u0020+-\u0020+/g, '\u0020\u2013\u0020'];
+    var emRule = [/\u0020+-\u0020+/g, '\u200a\u2014\u200a'];
+
+    var dashRule = enRule;
+    switch (language.dash) {
+        case 'en':
+            dashRule = enRule;
+            break;
+        case 'em':
+            dashRule = emRule;
+            break;
+        default:
+            console.warn('invalid option `dash: ' + language.dash + '`');
+            break;
+    }
+
     // NOTE: consecutive hyphens (2 or 3) are always transformed, because it's a user's choice, even if it is bad in the
     //       context
     return [
         // em dash
         [/\u0020*---(\r?\n|$)/g, '\u200a\u2014$1'],
         [/\u0020*---\u0020*/g, '\u200a\u2014\u200a'],
-        [/\u0020+-\u0020+/g, '\u200a\u2014\u200a'],
         // en dash
         [/--/g, '\u2013'],
         // number range
         [/(\d)-(\d)/g, '$1\u2013$2'],
+        // default dash
+        dashRule
     ];
 }
 
-export function tests() {
+export function tests(language) {
+    var dash = ({ en: '\u0020\u2013\u0020', em: '\u200a\u2014\u200a' })[language.dash];
+
     return [
         {
             description: 'two consecutive hyphens surrounded by whitespaces into en dash',
@@ -46,9 +64,9 @@ export function tests() {
             expected: 'lorem ipsum\u200a\u2014\nlorem ipsum\u200a\u2014'
         },
         {
-            description: 'hyphen surrounded by whitespaces into em dash',
+            description: 'hyphen surrounded by whitespaces into default dash',
             input: 'lorem - ipsum',
-            expected: 'lorem\u200a\u2014\u200aipsum'
+            expected: 'lorem' + dash + 'ipsum'
         },
         {
             description: 'keep hyphen if not surrounded by whitespaces',

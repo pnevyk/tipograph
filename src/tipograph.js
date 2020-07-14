@@ -45,6 +45,10 @@ function getLanguage(option) {
             option.quotes = languages['english'].quotes;
         }
 
+        if (typeof option.dash === 'undefined') {
+            option.dash = languages['english'].dash;
+        }
+
         if (typeof option.rules === 'undefined') {
             option.rules = languages['english'].rules;
         }

@@ -51,6 +51,9 @@ var typo2 = tipograph({
     language: 'czech',
     presets: ['quotes', 'language'],
     post: 'latex',
+    options: {
+        dash: 'em',
+    },
 });
 
 typo2('"Ahoj <b style="color: red;">světe</b>!"') // „Ahoj <b style="color: red;">světe</b>!“
@@ -91,9 +94,7 @@ There is a number of predefined rules which are grouped into presets. By default
 
 #### hyphens
 
-Hyphens are present on our keyboards and are used mostly to separatare multipart words (“cost-effective”) or multiword phrases which need to be together (“high-school grades”). Dashes come in two sizes: en dash and em dash. En dash is used instead of hyphen in number ranges (“1–5”), or if two consecutive hyphens are found. Em dashed is used as a break in sentence (“tipograph — even if it’s just a set of simple rules — can improve typography in your content”), or if three consecutive hyphens are found.
-
-*Type of dash used as break in sentence might be dependent on language habits in the future.*
+Hyphens are present on our keyboards and are used mostly to separate multipart words (“cost-effective”) or multiword phrases which need to be together (“high-school grades”). Dashes come in two sizes: en dash and em dash. En dash is used instead of hyphen in number ranges (“1–5”), or when two consecutive hyphens are found. Em dash is use when three consecutive hyphens are found. Both can be used as a break in a sentence (“tipograph — even if it’s just a set of simple rules — can improve typography in your content”). Whether en dash or em dash will be used for this case depends on the setting of the language or it can be overridden by `dash: 'en' | 'em'` in tipograph` options.
 
 #### language
 

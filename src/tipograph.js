@@ -11,6 +11,7 @@ var defaultOptions = {
     format: 'plain',
     language: 'english',
     presets: Object.keys(presets),
+    options: {},
 };
 
 function getFormat(option) {
@@ -61,7 +62,7 @@ function getLanguage(option) {
     }
 }
 
-function getPresets(option, language) {
+function getPresets(option, language, options) {
     if (Array.isArray(option)) {
         return option.map(function (preset) {
             if (typeof preset === 'string' && typeof presets[preset] === 'undefined') {
@@ -69,9 +70,9 @@ function getPresets(option, language) {
                     'Unsupported preset: ' + preset + '. Choose one from ' + Object.keys(presets).join(', ') + '.'
                 );
             } else if (typeof preset === 'function') {
-                return preset(language);
+                return preset(language, options);
             } else {
-                return presets[preset](language);
+                return presets[preset](language, options);
             }
         });
     } else {
@@ -99,7 +100,7 @@ export default function tipograph(options) {
 
     var format = getFormat(options.format);
     var language = getLanguage(options.language);
-    var pipeline = getPresets(options.presets, language);
+    var pipeline = getPresets(options.presets, language, options.options);
     var postMap = getPost(options.post);
 
     return function (input, callback) {

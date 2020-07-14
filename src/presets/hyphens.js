@@ -5,14 +5,17 @@
 /// En dash is used instead of hyphen in number ranges ("1-5"), or when two consecutive hyphens are found. Em dash is
 /// use when three consecutive hyphens are found. Both can be used as a break in a sentence ("tipograph - even if it's
 /// just a set of simple rules - can improve typography in your content"). Whether en dash or em dash will be used for
-/// this case depends on the setting of the language.
+/// this case depends on the setting of the language or it can be overridden by `dash: 'en' | 'em'` in tipograph`
+/// options.
 
-export default function (language) {
+export default function (language, options) {
     var enRule = [/\u0020+-\u0020+/g, '\u0020\u2013\u0020'];
     var emRule = [/\u0020+-\u0020+/g, '\u200a\u2014\u200a'];
 
+    var dash = options.dash || language.dash;
+
     var dashRule = enRule;
-    switch (language.dash) {
+    switch (dash) {
         case 'en':
             dashRule = enRule;
             break;
@@ -20,7 +23,7 @@ export default function (language) {
             dashRule = emRule;
             break;
         default:
-            console.warn('invalid option `dash: ' + language.dash + '`');
+            console.warn('invalid option `dash: ' + dash + '`');
             break;
     }
 

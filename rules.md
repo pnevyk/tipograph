@@ -12,7 +12,7 @@
 <tr><td>keep two consecutive hyphens if not surrounded by whitespaces</td><td>lorem--ipsum --dolor</td><td>lorem–ipsum –dolor</td></tr>
 <tr><td>three consecutive hyphens into em dash</td><td>lorem --- ipsum---dolor</td><td>lorem — ipsum — dolor</td></tr>
 <tr><td>three consecutive hyphens at the end of line or input into em dash</td><td>lorem ipsum---<br />lorem ipsum---</td><td>lorem ipsum —<br />lorem ipsum —</td></tr>
-<tr><td>hyphen surrounded by whitespaces into em dash</td><td>lorem - ipsum</td><td>lorem — ipsum</td></tr>
+<tr><td>hyphen surrounded by whitespaces into default dash</td><td>lorem - ipsum</td><td>lorem – ipsum</td></tr>
 <tr><td>keep hyphen if not surrounded by whitespaces</td><td>lorem-ipsum -dolor</td><td>lorem-ipsum -dolor</td></tr>
 <tr><td>hyphen surrounded by numbers into en dash</td><td>1-5</td><td>1–5</td></tr>
 <tr><td>take only word spaces as possible whitespaces in hypen to dash rule</td><td>lorem -<br />ipsum lorem<br />- ipsum</td><td>lorem -<br />ipsum lorem<br />- ipsum</td></tr>

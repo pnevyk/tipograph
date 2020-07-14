@@ -5,7 +5,7 @@
 /// En dash is used instead of hyphen in number ranges ("1-5"), or when two consecutive hyphens are found. Em dash is
 /// use when three consecutive hyphens are found. Both can be used as a break in a sentence ("tipograph - even if it's
 /// just a set of simple rules - can improve typography in your content"). Whether en dash or em dash will be used for
-/// this case depends on the setting of the language or it can be overridden by `dash: 'en' | 'em'` in tipograph`
+/// this case depends on the setting of the language or it can be overridden by `dash: 'en' | 'em'` in tipograph
 /// options.
 
 export default function (language, options) {

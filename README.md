@@ -2,7 +2,7 @@
 
 *A little javascript library and command line tool that makes your written content more typographically correct.*
 
-> “When you ig­nore ty­pog­ra­phy, you’re ig­nor­ing an op­por­tu­nity to im­prove the ef­fec­tive­ness of your writing.” — Matthew Butterick
+> “When you ig­nore ty­pog­ra­phy, you’re ig­nor­ing an op­por­tu­nity to im­prove the ef­fec­tive­ness of your writing.” – Matthew Butterick
 
 Even if typography can be seen as a set of rules given by some freaks, it’s actually quite an important aspect of written content. Besides it brings an aesthetic value, it also helps a person to read the text more fluently and comfortably. And curly quotes just look great!
 
@@ -94,7 +94,7 @@ There is a number of predefined rules which are grouped into presets. By default
 
 #### hyphens
 
-Hyphens are present on our keyboards and are used mostly to separate multipart words (“cost-effective”) or multiword phrases which need to be together (“high-school grades”). Dashes come in two sizes: en dash and em dash. En dash is used instead of hyphen in number ranges (“1–5”), or when two consecutive hyphens are found. Em dash is use when three consecutive hyphens are found. Both can be used as a break in a sentence (“tipograph — even if it’s just a set of simple rules — can improve typography in your content”). Whether en dash or em dash will be used for this case depends on the setting of the language or it can be overridden by `dash: 'en' | 'em'` in tipograph` options.
+Hyphens are present on our keyboards and are used mostly to separate multipart words (“cost-effective”) or multiword phrases which need to be together (“high-school grades”). Dashes come in two sizes: en dash and em dash. En dash is used instead of hyphen in number ranges (“1–5”), or when two consecutive hyphens are found. Em dash is use when three consecutive hyphens are found. Both can be used as a break in a sentence (“tipograph – even if it’s just a set of simple rules – can improve typography in your content”). Whether en dash or em dash will be used for this case depends on the setting of the language or it can be overridden by `dash: 'en' | 'em'` in tipograph` options.
 
 #### language
 
@@ -106,7 +106,7 @@ Unfortunately, majority of nice mathematical symbols is not present on our keybo
 
 #### quotes
 
-Nice quotes are probably the most visible feature of correct typography. On our keyboards, we have just these straight one which are pretty ugly. However, *tipograph* tries to replace them with their correct counterparts — and it even takes language habits into account. Moreover, it attempts to handle apostrophes, inch and foot units symbols, or fix some writers' bad habbits (such as two consecutive commas in order to imitate bottom 99-shaped quotes).
+Nice quotes are probably the most visible feature of correct typography. On our keyboards, we have just these straight one which are pretty ugly. However, *tipograph* tries to replace them with their correct counterparts – and it even takes language habits into account. Moreover, it attempts to handle apostrophes, inch and foot units symbols, or fix some writers' bad habbits (such as two consecutive commas in order to imitate bottom 99-shaped quotes).
 
 #### spaces
 

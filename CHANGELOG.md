@@ -1,3 +1,8 @@
+## 0.6.0
+
+* Use default dash as it is set in a language configuration. **Breaking change:** Default dash is now en dash instead of em dash.
+* Allow to pass options to presets if they support it. The first option is the default type of dash.
+
 ## 0.5.2
 
 * Update a lot of dependencies using `npm audit fix` (there were some semver incompatible bumps but it should be fine)

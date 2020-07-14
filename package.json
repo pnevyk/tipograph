@@ -58,13 +58,13 @@
         "yargs": "^15.4.1"
     },
     "devDependencies": {
-        "chalk": "^2.4.1",
+        "chalk": "^4.1.0",
         "esm": "^3.2.25",
-        "rollup": "^0.61.1",
-        "rollup-plugin-eslint": "^4.0.0",
-        "rollup-plugin-gzip": "^1.4.0",
+        "rollup": "^2.21.0",
+        "rollup-plugin-eslint": "^7.0.0",
+        "rollup-plugin-gzip": "^2.5.0",
         "rollup-plugin-license": "^2.1.0",
-        "rollup-plugin-uglify": "^4.0.0"
+        "rollup-plugin-uglify": "^6.0.4"
     },
     "unpkg": "dist/tipograph.min.js"
 }

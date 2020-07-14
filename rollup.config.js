@@ -1,4 +1,4 @@
-import eslint from 'rollup-plugin-eslint';
+import { eslint } from 'rollup-plugin-eslint';
 import license from 'rollup-plugin-license';
 import { uglify } from 'rollup-plugin-uglify';
 import gzip from 'rollup-plugin-gzip';

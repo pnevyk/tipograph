@@ -36,7 +36,9 @@ export default [{
         name: 'tipograph'
     },
     plugins: [
-        eslint(),
+        eslint({
+            throwOnError: true
+        }),
         uglify(),
         gzip(),
         license({

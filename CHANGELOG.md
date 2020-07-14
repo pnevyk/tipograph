@@ -1,3 +1,8 @@
+## 0.5.2
+
+* Update a lot of dependencies using `npm audit fix` (there were some semver incompatible bumps but it should be fine)
+* Fix quotes plugin inside HTML tags
+
 ## 0.5.1
 
 * Fix support for custom language

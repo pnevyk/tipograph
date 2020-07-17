@@ -4,34 +4,86 @@
 /// script.
 
 export default function () {
-    var tag = '</?[a-zA-Z0-9-]+[^>]*>';
-
-    // match spaces around tags too, because if the text with spaces left was transformed,
-    // these spaces would probably disappear (spaces preset) and this could change semantic meanining of HTML source
-    var pre = '\\s?<pre(?:>|\\s[^>]*>)[\\s\\S]*</pre>\\s?';
-    var code = '\\s?<code(?:>|\\s[^>]*>)[\\s\\S]*</code>\\s?';
-
-    var style = '<style(?:>|\\s[^>]*>)[\\s\\S]*</style>';
-    var script = '<script(?:>|\\s[^>]*>)[\\s\\S]*</script>';
-
     return function (input) {
-        var pattern = new RegExp([pre, code, style, script, tag].join('|'), 'gi');
         var result = null;
         var last = 0;
         var output = [];
 
-        while ((result = pattern.exec(input)) !== null) {
-            output.push({ transform: true, content: input.slice(last, result.index)});
-            output.push({ transform: false, content: result[0]});
-            last = pattern.lastIndex;
+        while ((result = findTag(input, last)) !== null) {
+            output.push({ transform: true, content: input.slice(last, result[0]) });
+            output.push({ transform: false, content: input.slice(result[0], result[1]) });
+            last = result[1];
         }
 
-        output.push({ transform: true, content: input.slice(last)});
+        output.push({ transform: true, content: input.slice(last) });
 
         return output;
     };
 }
 
+function findTag(input, last) {
+    // global flag needed for setting `lastIndex` property when doing `exec`
+    var pattern = /<\/?[a-z][a-z0-9-_]*/gi;
+    pattern.lastIndex = last;
+
+    var tagEnd;
+    var result = null;
+    if ((result = pattern.exec(input)) !== null) {
+        var tag = result[0];
+        var start = result.index;
+        if (['<pre', '<code', '<style', '<script'].indexOf(tag) != -1) {
+            var closeTag = new RegExp(tag[0] + '/' + tag.slice(1), 'gi');
+            closeTag.lastIndex = pattern.lastIndex;
+            if ((result = closeTag.exec(input)) !== null) {
+                tagEnd = findTagEnd(input, closeTag.lastIndex);
+                return [start, tagEnd];
+            } else {
+                // not closed special tag
+                return [start, input.length];
+            }
+        } else {
+            tagEnd = findTagEnd(input, pattern.lastIndex);
+            return [start, tagEnd];
+        }
+    } else {
+        return null;
+    }
+}
+
+function findTagEnd(input, last) {
+    var state = 'initial';
+    var escape = false;
+
+    for (var i = last; i < input.length; i++) {
+        if (state === 'initial') {
+            if (input[i] === '>') {
+                return i + 1;
+            } else if (input[i] === '"') {
+                state = 'double';
+            } else if (input[i] === '\'') {
+                state = 'single';
+            }
+        } else if (state === 'double') {
+            if (input[i] === '"' && !escape) {
+                state = 'initial';
+            } else if (input[i] === '\\') {
+                escape = true;
+            } else {
+                escape = false;
+            }
+        } else if (state === 'single') {
+            if (input[i] === '\'' && !escape) {
+                state = 'initial';
+            } else if (input[i] === '\\') {
+                escape = true;
+            } else {
+                escape = false;
+            }
+        }
+    }
+
+    return input.length;
+}
 
 export function tests() {
     return [
@@ -47,11 +99,11 @@ export function tests() {
         }, {
             description: 'pre tag',
             input: 'lorem <pre>ipsum</pre> dolor',
-            expected: 'loremdolor'
+            expected: 'lorem  dolor'
         }, {
             description: 'code tag',
             input: 'lorem <code>ipsum</code> dolor',
-            expected: 'loremdolor'
+            expected: 'lorem  dolor'
         }, {
             description: 'custom tag starting with pre',
             input: 'lorem <precision>ipsum</precision> dolor',
@@ -68,6 +120,14 @@ export function tests() {
             description: 'script tag',
             input: '<script>\nconsole.log("Hello world!")\n</script>',
             expected: ''
+        }, {
+            description: 'multiple scripts',
+            input: '<script>lorem</script> ipsum <script>dolor</script>',
+            expected: ' ipsum '
+        }, {
+            description: 'complex attributes',
+            input: '<i class="is this > even\\" legit?">lorem</i>',
+            expected: 'lorem'
         }
     ];
 }

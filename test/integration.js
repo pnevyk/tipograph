@@ -1,10 +1,12 @@
-var presets = require('../src/presets');
+var benchmarks = require('./benchmarks');
+var tipograph = require('../src/tipograph').default;
 var english = require('../src/languages/english').default;
 var unit = require('./unit');
-const { option } = require('yargs');
 
 var doubleOpen = english.quotes[0][0];
 var doubleClose = english.quotes[0][1];
+
+var large = tipograph({ format: 'html' })(benchmarks.find(item => item.name === 'RegExp Reference').content);
 
 var htmlPre = [
     {
@@ -16,6 +18,11 @@ var htmlPre = [
         description: 'do not trim multiple spaces across html tags',
         input: 'lorem <em>foo</em> ipsum',
         expected: 'lorem <em>foo</em> ipsum'
+    },
+    {
+        description: 'tipograph should work on large, realistic html documents',
+        input: large.replace('Sign in to enjoy', 'Sign in to enjoy --'),
+        expected: large.replace('Sign in to enjoy', 'Sign in to enjoy \u2013')
     }
 ];
 

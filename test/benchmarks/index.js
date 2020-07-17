@@ -10,6 +10,10 @@ var benchmarks = [
         name: 'Typography at Wikipedia',
         content: 'typography.html'
     },
+    {
+        name: 'RegExp Reference',
+        content: 'regexp-reference.html'
+    }
 ];
 
 module.exports = benchmarks.map(function (item) {

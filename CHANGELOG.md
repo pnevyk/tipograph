@@ -1,3 +1,7 @@
+## 0.7.0
+
+* Fix *horrible* bug in html preprocessor which caused not transforming content between te first and the last `script`, `style`, etc. tags.
+
 ## 0.6.0
 
 * Use default dash as it is set in a language configuration. **Breaking change:** Default dash is now en dash instead of em dash.

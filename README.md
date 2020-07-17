@@ -14,6 +14,8 @@ It’s impossible to manage all rules out there, because *tipograph* is just a s
 
 *Tipograph is not in stable phase yet. Rules will be added and improved over time. Feel free to make suggestion or ask question if you have any.*
 
+Note that Tipograph is focused on character substitution text-wise. Therefore it has a different goal than [Typeset](https://github.com/davidmerfield/Typeset) library which focuses on nice typography regarding appearance (although there is a small overlap in some pattern substitution).
+
 ## Demo
 
 You can see what *tipograph* help you with [here](http://pnevyk.github.io/tipograph/).
@@ -94,7 +96,7 @@ There is a number of predefined rules which are grouped into presets. By default
 
 #### hyphens
 
-Hyphens are present on our keyboards and are used mostly to separate multipart words (“cost-effective”) or multiword phrases which need to be together (“high-school grades”). Dashes come in two sizes: en dash and em dash. En dash is used instead of hyphen in number ranges (“1–5”), or when two consecutive hyphens are found. Em dash is use when three consecutive hyphens are found. Both can be used as a break in a sentence (“tipograph – even if it’s just a set of simple rules – can improve typography in your content”). Whether en dash or em dash will be used for this case depends on the setting of the language or it can be overridden by `dash: 'en' | 'em'` in tipograph` options.
+Hyphens are present on our keyboards and are used mostly to separate multipart words (“cost-effective”) or multiword phrases which need to be together (“high-school grades”). Dashes come in two sizes: en dash and em dash. En dash is used instead of hyphen in number ranges (“1–5”), or when two consecutive hyphens are found. Em dash is use when three consecutive hyphens are found. Both can be used as a break in a sentence (“tipograph – even if it’s just a set of simple rules – can improve typography in your content”). Whether en dash or em dash will be used for this case depends on the setting of the language or it can be overridden by `dash: 'en' | 'em'` in tipograph options.
 
 #### language
 

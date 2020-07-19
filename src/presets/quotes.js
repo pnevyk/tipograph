@@ -23,6 +23,7 @@ export default function (language) {
         [/(\s)'(\d{2})/g, '$1\u2019$2'],
         // double curly quotes
         [/(\s|\(|^)"(?!\s)([^"]+)(\S)"/g, '$1' + doubleOpen + '$2$3' + doubleClose],
+        [/(\s|\(|^)&quot;(?!\s)((?!&quot;).+)(\S)&quot;/g, '$1' + doubleOpen + '$2$3' + doubleClose],
         // single curly quotes
         [/(\s|\(|^)'(?!\s)([^']+)(\S)'/g, '$1' + singleOpen + '$2$3' + singleClose],
         // inches

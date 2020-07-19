@@ -23,6 +23,11 @@ var htmlPre = [
         description: 'tipograph should work on large, realistic html documents',
         input: large.replace('Sign in to enjoy', 'Sign in to enjoy --'),
         expected: large.replace('Sign in to enjoy', 'Sign in to enjoy \u2013')
+    },
+    {
+        description: 'support html entities in the rules',
+        input: '&quot;HashMap&quot; with <code>K</code> -&gt; <code>V</code> structure',
+        expected: doubleOpen + 'HashMap' + doubleClose + ' with <code>K</code> \u2192 <code>V</code> structure',
     }
 ];
 

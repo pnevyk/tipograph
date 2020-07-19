@@ -17,7 +17,9 @@ export default function () {
         [/([^.]|^)\.\.\.([^.]|$)/g, '$1\u2026$2'],
         // arrows
         [/<-/g, '\u2190'],
+        [/&lt;-/g, '\u2190'],
         [/->/g, '\u2192'],
+        [/-&gt;/g, '\u2192'],
         // question/exclamation marks
         [/\?!+/g, '\u2048'],
         [/!\?+/g, '\u2049'],

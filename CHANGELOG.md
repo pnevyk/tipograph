@@ -1,3 +1,8 @@
+## 0.7.1
+
+* Substitute some patterns even when they contain html entities
+* Handle doctype tag and comments in HTML format
+
 ## 0.7.0
 
 * Fix *horrible* bug in html preprocessor which caused not transforming content between te first and the last `script`, `style`, etc. tags.

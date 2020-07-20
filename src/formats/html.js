@@ -23,15 +23,18 @@ export default function () {
 
 function findTag(input, last) {
     // global flag needed for setting `lastIndex` property when doing `exec`
-    var pattern = /<\/?[a-z][a-z0-9-_]*/gi;
+    var pattern = /<[/!]?[a-z][a-z0-9-_]*|<!--/gi;
     pattern.lastIndex = last;
 
     var tagEnd;
     var result = null;
     if ((result = pattern.exec(input)) !== null) {
-        var tag = result[0];
+        var tag = result[0].toLowerCase();
         var start = result.index;
-        if (['<pre', '<code', '<style', '<script'].indexOf(tag) != -1) {
+        if (tag === '<!--') {
+            var commentEnd = findCommentEnd(input, pattern.lastIndex);
+            return [start, commentEnd];
+        } else if (['<pre', '<code', '<style', '<script'].indexOf(tag) != -1) {
             var closeTag = new RegExp(tag[0] + '/' + tag.slice(1), 'gi');
             closeTag.lastIndex = pattern.lastIndex;
             if ((result = closeTag.exec(input)) !== null) {
@@ -85,6 +88,18 @@ function findTagEnd(input, last) {
     return input.length;
 }
 
+function findCommentEnd(input, last) {
+    var pattern = /-->/g;
+    pattern.lastIndex = last;
+
+    var result = null;
+    if ((result = pattern.exec(input)) !== null) {
+        return result.index + 3;
+    } else {
+        return input.length;
+    }
+}
+
 export function tests() {
     return [
         {
@@ -128,6 +143,14 @@ export function tests() {
             description: 'complex attributes',
             input: '<i class="is this > even\\" legit?">lorem</i>',
             expected: 'lorem'
+        }, {
+            description: 'html comments',
+            input: 'lorem <!-- comment --> ipsum',
+            expected: 'lorem  ipsum',
+        }, {
+            description: 'doctype',
+            input: '<!DOCTYPE html>',
+            expected: '',
         }
     ];
 }

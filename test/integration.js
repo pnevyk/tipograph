@@ -15,6 +15,11 @@ var htmlPre = [
         expected: '<p>' + doubleOpen + 'lorem ipsum' + doubleClose + '</p>'
     },
     {
+        description: 'quotes outside html tags',
+        input: '"<a>lorem</a>"',
+        expected: doubleOpen + '<a>lorem</a>' + doubleClose,
+    },
+    {
         description: 'do not trim multiple spaces across html tags',
         input: 'lorem <em>foo</em> ipsum',
         expected: 'lorem <em>foo</em> ipsum'

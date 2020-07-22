@@ -119,7 +119,7 @@ export default function tipograph(options) {
             if (processed[i].transform) {
                 content += processed[i].content;
             } else {
-                content += '\u00A0<tipograph[' + tokens.length + ']>\u00A0';
+                content += '\u200B<tipograph[' + tokens.length + ']>\u200B';
                 tokens.push(processed[i].content);
             }
         }
@@ -134,7 +134,7 @@ export default function tipograph(options) {
         }
 
         // replace placeholders with their original content
-        content = content.replace(/\u00A0<tipograph\[(\d+)\]>\u00A0/g, function (match, index) {
+        content = content.replace(/\u200B<tipograph\[(\d+)\]>\u200B/g, function (match, index) {
             return tokens[index];
         });
 

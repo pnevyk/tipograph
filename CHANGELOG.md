@@ -1,3 +1,7 @@
+## 0.7.2
+
+* Fix quotes substitution for one-character content
+
 ## 0.7.1
 
 * Substitute some patterns even when they contain html entities
@@ -5,7 +9,7 @@
 
 ## 0.7.0
 
-* Fix *horrible* bug in html preprocessor which caused not transforming content between te first and the last `script`, `style`, etc. tags.
+* Fix *horrible* bug in html preprocessor which caused not transforming content between the first and the last `script`, `style`, etc. tags.
 
 ## 0.6.0
 

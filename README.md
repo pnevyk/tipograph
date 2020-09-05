@@ -104,7 +104,7 @@ This preset only applies language specific rules defined in language given at ti
 
 #### math
 
-Unfortunately, majority of nice mathematical symbols is not present on our keyboard. Where it make sense, *tipograph* tries to put them instead of their poor substitues. For example, minus sign (that’s right, even minus sign has its special character) instead of hyphen, multiplication sign instead of the letter "x", etc. Imagine how you would write this formula just by hand: 2 × 3 ≠ 5.
+Unfortunately, majority of nice mathematical symbols is not present on our keyboard. Where it make sense, *tipograph* tries to put them instead of their poor substitues. For example, minus sign (that’s right, even minus sign has its special character) instead of hyphen, multiplication sign instead of the letter “x”, etc. Imagine how you would write this formula just by hand: 2 × 3 ≠ 5.
 
 #### quotes
 

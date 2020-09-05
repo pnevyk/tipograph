@@ -60,6 +60,7 @@
 <tr><td>single straight quote between two letters into apostrophe</td><td>it's</td><td>it’s</td></tr>
 <tr><td>single straight quote between two letters into apostrophe inside of single curly quotes</td><td>'it's'</td><td>‘it’s’</td></tr>
 <tr><td>mixed single and double straight quotes also with apostrophes in various contexts</td><td>I wasn't a particular fan of the music in the '80s. And then she blurted, "I thought you said, 'I don't like '80s music'?"</td><td>I wasn’t a particular fan of the music in the ’80s. And then she blurted, “I thought you said, ‘I don’t like ’80s music’?”</td></tr>
+<tr><td>one-character content</td><td>"1"</td><td>“1”</td></tr>
 </tbody>
 </table>
 

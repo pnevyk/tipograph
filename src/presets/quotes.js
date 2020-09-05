@@ -12,23 +12,23 @@ export default function (language) {
     var singleOpen = language.quotes[1][0];
     var singleClose = language.quotes[1][1];
 
-    // HACK: \u200B is used internally by tipograph to separate input format (e.g., html) tag placeholders from other
-    //       the content.
+    // HACK: \u200B is used internally by tipograph to separate input format (e.g., html) tag placeholders from the
+    //       other content.
 
     return [
         // two commas into double open down
-        [/(\s|\(|^|\u200B),,([^"']+)(\S)(?:"|'')/g, '$1\u201E$2$3' + doubleClose],
+        [/(\s|\(|^|\u200B),,([^"']*)(\S)(?:"|'')/g, '$1\u201E$2$3' + doubleClose],
         // one comma into single open down in certain cases
-        [/(\s|\(|^|\u200B),(?!\s)([^']+)(\S)'/g, '$1\u201A$2$3' + singleClose],
+        [/(\s|\(|^|\u200B),(?!\s)([^']*)(\S)'/g, '$1\u201A$2$3' + singleClose],
         // apostrophe
         [/([a-z])'([a-z])/gi, '$1\u2019$2'],
         // decades
         [/(\s|\u200B)'(\d{2})/g, '$1\u2019$2'],
         // double curly quotes
-        [/(\s|\(|^|\u200B)"(?!\s)([^"]+)(\S)"/g, '$1' + doubleOpen + '$2$3' + doubleClose],
-        [/(\s|\(|^|\u200B)&quot;(?!\s)((?!&quot;).+)(\S)&quot;/g, '$1' + doubleOpen + '$2$3' + doubleClose],
+        [/(\s|\(|^|\u200B)"(?!\s)([^"]*)(\S)"/g, '$1' + doubleOpen + '$2$3' + doubleClose],
+        [/(\s|\(|^|\u200B)&quot;(?!\s)((?!&quot;).*)(\S)&quot;/g, '$1' + doubleOpen + '$2$3' + doubleClose],
         // single curly quotes
-        [/(\s|\(|^|\u200B)'(?!\s)([^']+)(\S)'/g, '$1' + singleOpen + '$2$3' + singleClose],
+        [/(\s|\(|^|\u200B)'(?!\s)([^']*)(\S)'/g, '$1' + singleOpen + '$2$3' + singleClose],
         // inches
         [/(\d)"/g, '$1\u2033'],
         // feet
@@ -149,6 +149,11 @@ export function tests(language) {
             input: 'I wasn\'t a particular fan of the music in the \'80s. And then she blurted, "I thought you said, \'I don\'t like \'80s music\'?"',
             expected: 'I wasn\u2019t a particular fan of the music in the \u201980s. And then she blurted, \u201CI thought you said, \u2018I don\u2019t like \u201980s music\u2019?\u201D'
             /* eslint-enable max-len */
+        },
+        {
+            description: 'one-character content',
+            input: '"1"',
+            expected: doubleOpen + '1' + doubleClose
         }
     ];
 }

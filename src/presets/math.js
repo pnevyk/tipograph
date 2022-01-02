@@ -18,7 +18,11 @@ export default function () {
         // division
         [/(\d\s)\/(\s\d)/g, '$1\u00F7$2'],
         // inequality
-        [/!=/g, '\u2260']
+        [/!=/g, '\u2260'],
+        // less than or equal to
+        [/<=/g, '\u2264'],
+        // greater than or equal to
+        [/>=/g, '\u2265'],
     ];
 }
 
@@ -58,6 +62,16 @@ export function tests() {
             description: 'plusminus sign before number',
             input: '+-3',
             expected: '\u00B13'
-        }
+        },
+        {
+            description: 'less than or equal to sign',
+            input: '<= < = =<',
+            expected: '\u2264 < = =<'
+        },
+        {
+            description: 'greater than or equal to sign',
+            input: '>= > = =>',
+            expected: '\u2265 > = =>'
+        },
     ];
 }

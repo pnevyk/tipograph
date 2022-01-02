@@ -1,3 +1,7 @@
+## 0.7.3
+
+* Add rules for `≤` and `≥`
+
 ## 0.7.2
 
 * Fix quotes substitution for one-character content

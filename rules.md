@@ -31,6 +31,8 @@
 <tr><td>plusminus sign</td><td>+- + -</td><td>± + -</td></tr>
 <tr><td>inequality sign</td><td>!= ! =</td><td>≠ ! =</td></tr>
 <tr><td>plusminus sign before number</td><td>+-3</td><td>±3</td></tr>
+<tr><td>less than or equal to sign</td><td><= < = =<</td><td>≤ < = =<</td></tr>
+<tr><td>greater than or equal to sign</td><td>>= > = =></td><td>≥ > = =></td></tr>
 </tbody>
 </table>
 

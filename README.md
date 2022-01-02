@@ -2,6 +2,8 @@
 
 *A little javascript library and command line tool that makes your written content more typographically correct.*
 
+**STATUS:** The library is in passive maintenance. I don’t have any active use of this project personally. Nevertheless, all feature requests and bug reports will be addressed in a reasonable time manner.
+
 > “When you ig­nore ty­pog­ra­phy, you’re ig­nor­ing an op­por­tu­nity to im­prove the ef­fec­tive­ness of your writing.” – Matthew Butterick
 
 Even if typography can be seen as a set of rules given by some freaks, it’s actually quite an important aspect of written content. Besides it brings an aesthetic value, it also helps a person to read the text more fluently and comfortably. And curly quotes just look great!

@@ -1,6 +1,6 @@
-import { eslint } from 'rollup-plugin-eslint';
+import eslint from '@rollup/plugin-eslint';
 import license from 'rollup-plugin-license';
-import { uglify } from 'rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
 import gzip from 'rollup-plugin-gzip';
 
 const banner = 'tipograph v<%= pkg.version %> | Copyright (c) <%= moment().format(\'YYYY\') %> Petr Nevyhoštěný';
@@ -39,7 +39,7 @@ export default [{
         eslint({
             throwOnError: true
         }),
-        uglify(),
+        terser(),
         gzip(),
         license({
             banner: banner

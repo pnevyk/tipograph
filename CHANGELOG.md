@@ -1,3 +1,7 @@
+## 0.7.4
+
+* Update dependencies
+
 ## 0.7.3
 
 * Add rules for `≤` and `≥`

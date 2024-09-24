@@ -60,7 +60,7 @@
     "devDependencies": {
         "chalk": "^4",
         "esm": "^3",
-        "rollup": "^2",
+        "rollup": "^3",
         "@rollup/plugin-eslint": "^8",
         "rollup-plugin-gzip": "^3",
         "rollup-plugin-license": "^2",
